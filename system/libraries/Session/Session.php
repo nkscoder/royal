@@ -55,7 +55,7 @@ class CI_Session {
 	 */
 	public $userdata;
 
-	protected $_driver = 'files';
+	protected $_driver = 'database';
 	protected $_config;
 	protected $_sid_regexp;
 

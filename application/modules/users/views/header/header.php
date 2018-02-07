@@ -9,26 +9,26 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>dist/css/skins/_all-skins.min.css">
     <!-- Morris chart -->
-    <link rel="stylesheet" href="../bower_components/morris.js/morris.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/morris.js/morris.css">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="../bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/jvectormap/jquery-jvectormap.css">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="<?php echo  asset_url();?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -74,7 +74,7 @@
                                     <li><!-- start message -->
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                <img src="<?php echo  asset_url();?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 Support Team
@@ -87,7 +87,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                <img src="<?php echo  asset_url();?>dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 AdminLTE Design Team
@@ -99,7 +99,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                <img src="<?php echo  asset_url();?>dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 Developers
@@ -111,7 +111,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                <img src="<?php echo  asset_url();?>dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 Sales Department
@@ -123,7 +123,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                <img src="<?php echo  asset_url();?>dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 Reviewers
@@ -260,13 +260,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="<?php echo  asset_url();?>dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <span class="hidden-xs">Alexander Pierce</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="<?php echo  asset_url();?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
                                     Alexander Pierce - Web Developer
@@ -307,14 +307,14 @@
             </div>
         </nav>
     </header>
-
+    <aside class="main-sidebar">
 
 
     <section class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo  asset_url();?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>Alexander Pierce</p>
@@ -343,11 +343,57 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="client.php"><i class="fa fa-circle-o text-red"></i>Client</a></li>
-                    <li><a href="contractor.php"><i class="fa fa-circle-o text-yellow"></i> Contractor</a></li>
-                    <li><a href="employee.php"><i class="fa fa-circle-o text-aqua"></i> Employee</a></li>
+                    <li class="active"><a href="<?php echo base_url('users/client');?>"><i class="fa fa-circle-o text-red"></i>Client</a></li>
+                    <li><a href="<?php echo base_url('users/contractor');?>"><i class="fa fa-circle-o text-yellow"></i> Contractor</a></li>
+                    <li><a href="<?php echo base_url('users/employee');?>"><i class="fa fa-circle-o text-aqua"></i> Employee</a></li>
                 </ul>
             </li>
 
         </ul>
     </section>
+    </aside>
+    <script type="text/javascript">
+        setTimeout(function() {
+            $('#notification1').fadeOut('slow');
+        }, 7000);
+
+    </script>
+
+    <script type="text/javascript">
+        setTimeout(function() {
+            $('#notification').fadeOut('slow');
+        }, 7000);
+    </script>
+
+    <?php
+
+
+
+    $logout=$this->input->get('logout');
+    if($logout){
+        ?>
+        <div class="notification" id="notification1">
+
+            <h3> You are successfully logged out.</h3>
+        </div>
+
+
+        <?php
+
+    }else if (getInformUser()){
+    ?>
+    <div class="notification" id="notification" >
+        <?php  if(islogin()){if  ($this->session->userdata['login_first']==1) {
+
+            $this->session->set_userdata('login_first',0);
+
+            ?><h3>Welcome User</h3>
+
+        <?php }} ?>
+        <p>   <?php  echo getInformUser(); ?> </p>
+    </div>
+
+
+<?php
+}
+?>

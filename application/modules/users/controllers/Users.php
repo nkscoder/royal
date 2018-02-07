@@ -79,27 +79,143 @@ class Users extends MX_Controller{
 
    public function login(){
 
-       $data=$this->input->post();
-//       print_r($data);
-       $this->Mdl_users->setData('login',$data['email'],$data['password']);
+       $email=$this->input->post('email');
+       $password=$this->input->post('password');
+
+//       echo $data['email'];
+//       print_r($data); die;
+       $this->Mdl_users->setData('checkUser',$email,$password);
+       $data=$this->Mdl_users->checkUser();
+//       print_r($data); die;
+       if($data){
+//                    print_r($data);
+//                     die;
+
+//                   $dashbord = $this->Mdl_users->login();
+//                   $user_data = $this->Mdl_users->getUserData();
+                   $this->_setSessionData('authorize', $data);
+                        setInformUser('success', 'Login successfully');
+                        redirect(base_url('users/dashboard'));
+                   /*echo $user_data['user_role_name'];die;*/
+//                   if ($user_data['user_role_name'] == 'admin') {
+//                       setInformUser('success', 'Login successfully');
+//                       redirect(base_url('admin'));
+//                   } else if ($this->session->userdata('user_products')) {
+//
+//                       redirect(base_url('users/do_upload'));
+//
+//                   }
+//                   if(){
+//                       setInformUser('success', 'Login successfully');
+//                       redirect(base_url('users'));
+//                   }
+//                   else{
+//                       setInformUser('success', 'Login successfully');
+//                       redirect(base_url('users'));
+//                   }
+//                   echo $dashbord;
+//                   if ($dashbord == 1) {
+//                       echo 'ok';
+//
+//                   } else if ($dashbord == 2) {
+//                       echo 'wrong';
+//                   } else {
+//                       echo 'wrong';
+//                   }
 
 
-       if(!empty($data)){
+      }else{
 
 
-               $dashbord = $this->Mdl_users->login();
-               if($dashbord == 1){
-                   echo 'ok';
-
-               } else if($dashbord == 2){
-                   echo 'wrong';
-               }else{
-                   echo 'wrong';
-               }
-       }
+           setInformUser('error','Your email is not registered with us. <br> Please register email using the Signup process.');
+           redirect(base_url('users'));
+           }
 
 //       $user_name = $this->input->post('user_name');
 //       echo $user_name;
 
    }
+    private function _setSessionData()
+    {
+        switch(func_get_arg(0)){
+            case 'authorize':   $this->session->set_userdata('authorize',true);
+                $this->session->set_userdata('user_data',func_get_arg(1));
+                $this->session->set_userdata('login_first',1);
+
+                break;
+
+            case 'products':
+
+                $this->session->set_userdata('user_products',func_get_arg(1));
+                break;
+            case 'order':
+
+                $this->session->set_userdata('user_order',func_get_arg(1));
+                break;
+            default: break;
+        }
+    }
+
+ public function dashboard(){
+
+     $this->load->view('header/header');
+     $this->load->view('dashboard');
+     $this->load->view('header/footer');
+ }
+
+ public function register(){
+
+     if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+
+       $this->Mdl_users->setData('register',$this->input->post('name'),$this->input->post('email'),$this->input->post('mobile'),$this->input->post('address'),$this->input->post('username'),$this->input->post('password'));
+
+                $data=$this->Mdl_users->checkUser();
+           if(!$data){
+               if($this->Mdl_users->register()){
+                   setInformUser('success','Your account is created successfully.');
+                   redirect(base_url('users/dashboard'));
+               }else{
+                   setInformUser('error','Some error Occurred!');
+
+                   redirect(base_url('users/client'));
+               }
+
+           }else{
+
+               setInformUser('error','Email Allready registered. Please Login. ');
+
+               redirect(base_url('users/client'));
+           }
+
+     }else{
+         redirect('users');
+     }
+ }
+
+
+ public function client(){
+
+
+         $this->load->view('header/header');
+         $this->load->view('client');
+         $this->load->view('header/footer');
+
+ }
+    public function contractor(){
+
+
+        $this->load->view('header/header');
+        $this->load->view('contractor');
+        $this->load->view('header/footer');
+
+    }
+    public function employee(){
+
+
+        $this->load->view('header/header');
+        $this->load->view('employee');
+        $this->load->view('header/footer');
+
+    }
+
 }

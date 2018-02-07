@@ -14,6 +14,8 @@ class Mdl_users extends CI_Model
     private $mobile;
     private $sname;
     private $fname;
+    private $username;
+    private $address;
 
     /**
      * @return mixed
@@ -95,22 +97,60 @@ class Mdl_users extends CI_Model
         $this->fname = $fname;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
 
 
     public function setData()
     {
         switch (func_get_arg(0)) {
-            case "login":
+            case "checkUser":
                 $this->setEmail(func_get_arg(1));
                 $this->setPassword(func_get_arg(2));
 //                $this->setRoleId(func_get_arg(3));
 //                $this->setUserFname(func_get_arg(4));
 //                $this->setPhone(func_get_arg(5));
                 break;
-//            case "checkUser":
-//                $this->setUserName(func_get_arg(1));
-//                $this->setPassword(func_get_arg(2));
-//                break;
+            case "register":
+                $this->setFname(func_get_arg(1));
+                $this->setEmail(func_get_arg(2));
+                $this->setMobile(func_get_arg(3));
+                $this->setAddress(func_get_arg(4));
+                $this->setUsername(func_get_arg(5));
+                $this->setPassword(func_get_arg(6));
+
+                break;
+
 //            case "setSessionData": {
 //
 //                $data = $this->db->where(array('eduworkers_users_username' => func_get_arg(1)))->select('eduworkers_users_username,eduworkers_users_id,eduworkers_users_roles_id,eduworkers_users_userfname')->get('eduworkers_users')->result_array();
@@ -191,46 +231,94 @@ class Mdl_users extends CI_Model
 
     }
 
-
-    public function login(){
-
-        $msg = $this->is_user($data);
-        if(!empty($msg)){
-            $search= array(
-                'email'=> $msg['email'],
-                'mobile' => $msg['mobile']
-            );
-            if($msg['password']== md5($data['password']) && in_array($data['email'], $search)){
-                return 1;
-            }else{
-                return 2;
-            }
+    public function checkUser()
+    {
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $this->db->where(array('email' => $this->email));
+        }
+        elseif (is_numeric($this->email)) {
+            $this->db->where(array('mobile' => $this->email));
         }else{
-            return 3;
+            $this->db->where(array('username' => $this->email));
+
         }
-    }
-    public function is_user($data){
-        $final_result = '';
-        if(!empty($data)){
-            if (filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                $this->db->where('email', $data['email']);
-            } else {
-                $this->db->where('mobile', $data['email']);
+            $data = $this->db->get('users')->result_array();
+//          print_r($this->email);
+//        $data2 = $this->db->where(array('email' => $this->email))->select('password')->get('users')->result_array();
+//        $data3 = $this->db->where(array('mobile' => $this->email))->select('password')->get('users')->result_array();
+//         print_r($data);
+//         $pss="q1w2e3r4";
+//        print_r(password_hash($pss, PASSWORD_DEFAULT));
+//       die;
+//        print_r($data);
+//        echo $this->password;
+//        echo $data[0]['password'];
+//        die;
+
+        if ($data){
+            if (password_verify($this->password,$data[0]['password'])){
+                return $data;
+            }else {
+//                die;
+                return false;
             }
-        }
-//        $cols = array("id", "name", "email",'password','mobile','created_by');
-        $results=$this->db->get('user')->result_array();
-//        $results = $this->db->getOne('client_table',$cols);
 
+        }else{ return false;}
 
-
-        if(!empty($results)){
-            $final_result =$results;
-        } else{
-            $final_result = 0;
-        }
-        return $final_result;
 
     }
+
+  public function getUserData()
+    {
+        return $this->db->where('eduworkers_users_username',$this->getUserName())->get('eduworkers_users')->result_array();
+    }
+
+  public  function register(){
+
+      $this->setPassword(password_hash($this->password, PASSWORD_DEFAULT));
+      $data =array(
+          'fname' =>$this->fname,
+          'username' => $this->username,
+          'email' => $this->email,
+          'password' => $this->password,
+          'mobile'=> $this->mobile,
+          'address'=>$this->address,
+          'role'=> 'client',
+          'status'=>0
+      );
+
+
+
+      if ($this->db->insert('users', $data)) {
+          return true;
+      }else{
+          return false;
+
+      }
+  }
+
+//    public function is_user($data){
+//        $final_result = '';
+//        if(!empty($data)){
+//            if (filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+//                $this->db->where('email', $data['email']);
+//            } else {
+//                $this->db->where('mobile', $data['email']);
+//            }
+//        }
+////        $cols = array("id", "name", "email",'password','mobile','created_by');
+//        $results=$this->db->get('user')->result_array();
+////        $results = $this->db->getOne('client_table',$cols);
+//
+//
+//
+//        if(!empty($results)){
+//            $final_result =$results;
+//        } else{
+//            $final_result = 0;
+//        }
+//        return $final_result;
+//
+//    }
 
 }
