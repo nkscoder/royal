@@ -30,8 +30,8 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <form role="form"  action="<?php echo base_url('users/register')?>" method="post" >
-                                <!--                <input type="hidden" name="client" value="client">-->
+                            <form role="form"  action="<?php echo base_url('users/register');?>" method="post" >
+                                <input type="hidden" name="role" value="client">
                                 <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                                     <label for="exampleInputEmail1">Name</label>
                                     <input type="name" class="form-control" name="name" id="name" placeholder="Enter name">

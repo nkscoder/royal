@@ -16,6 +16,8 @@ class Mdl_users extends CI_Model
     private $fname;
     private $username;
     private $address;
+    private $role;
+    private $workingarea;
 
     /**
      * @return mixed
@@ -129,6 +131,37 @@ class Mdl_users extends CI_Model
         $this->address = $address;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorkingarea()
+    {
+        return $this->workingarea;
+    }
+
+    /**
+     * @param mixed $workingarea
+     */
+    public function setWorkingarea($workingarea)
+    {
+        $this->workingarea = $workingarea;
+    }
 
 
     public function setData()
@@ -141,16 +174,39 @@ class Mdl_users extends CI_Model
 //                $this->setUserFname(func_get_arg(4));
 //                $this->setPhone(func_get_arg(5));
                 break;
-            case "register":
+            case "client":
                 $this->setFname(func_get_arg(1));
                 $this->setEmail(func_get_arg(2));
                 $this->setMobile(func_get_arg(3));
                 $this->setAddress(func_get_arg(4));
                 $this->setUsername(func_get_arg(5));
                 $this->setPassword(func_get_arg(6));
+                $this->setRole(func_get_arg(7));
+
 
                 break;
+            case "contractor":
+                $this->setFname(func_get_arg(1));
+                $this->setEmail(func_get_arg(2));
+                $this->setMobile(func_get_arg(3));
+                $this->setAddress(func_get_arg(4));
+                $this->setUsername(func_get_arg(5));
+                $this->setPassword(func_get_arg(6));
+                $this->setRole(func_get_arg(7));
+                $this->setWorkingarea(func_get_arg(8));
 
+                break;
+            case "employee":
+                $this->setFname(func_get_arg(1));
+                $this->setEmail(func_get_arg(2));
+                $this->setMobile(func_get_arg(3));
+                $this->setAddress(func_get_arg(4));
+                $this->setUsername(func_get_arg(5));
+                $this->setPassword(func_get_arg(6));
+                $this->setRole(func_get_arg(7));
+                $this->setWorkingarea(func_get_arg(8));
+
+                break;
 //            case "setSessionData": {
 //
 //                $data = $this->db->where(array('eduworkers_users_username' => func_get_arg(1)))->select('eduworkers_users_username,eduworkers_users_id,eduworkers_users_roles_id,eduworkers_users_userfname')->get('eduworkers_users')->result_array();
@@ -273,30 +329,58 @@ class Mdl_users extends CI_Model
         return $this->db->where('eduworkers_users_username',$this->getUserName())->get('eduworkers_users')->result_array();
     }
 
-  public  function register(){
+  public  function register()
+  {
 
       $this->setPassword(password_hash($this->password, PASSWORD_DEFAULT));
-      $data =array(
-          'fname' =>$this->fname,
-          'username' => $this->username,
-          'email' => $this->email,
-          'password' => $this->password,
-          'mobile'=> $this->mobile,
-          'address'=>$this->address,
-          'role'=> 'client',
-          'status'=>0
-      );
+      if ($this->role == 'client') {
+          $data = array(
+              'fname' => $this->fname,
+              'username' => $this->username,
+              'email' => $this->email,
+              'password' => $this->password,
+              'mobile' => $this->mobile,
+              'address' => $this->address,
+              'role' => 'client',
+              'status' => 0
+          );
+      } else if ($this->role == 'contractor') {
+          $data = array(
+              'fname' => $this->fname,
+              'username' => $this->username,
+              'email' => $this->email,
+              'password' => $this->password,
+              'mobile' => $this->mobile,
+              'address' => $this->address,
+              'role' => 'contractor',
+              'working_area' => $this->workingarea,
+              'status' => 0,
+          );
+      } else if ($this->role == 'employee') {
+          $data = array(
+              'fname' => $this->fname,
+              'username' => $this->username,
+              'email' => $this->email,
+              'password' => $this->password,
+              'mobile' => $this->mobile,
+              'address' => $this->address,
+              'role' => 'employee',
+              'status' => 0,
+              'working_area' => $this->workingarea
 
+          );
+      }
+//      print_r($data);die;
 
+//      $da=$this->db->insert('users', $data);
+      $query= $this->db->insert('users', $data)? true : false;
 
-      if ($this->db->insert('users', $data)) {
-          return true;
+      if ($query) {
+       return true;
       }else{
           return false;
-
       }
   }
-
 //    public function is_user($data){
 //        $final_result = '';
 //        if(!empty($data)){

@@ -37,7 +37,8 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form role="form">
+                        <form role="form" action="<?php echo base_url('users/register/');?>" method="post">
+                            <input type="hidden" name="role" value="employee">
                             <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                                 <label for="exampleInputEmail1">Name</label>
                                 <input type="name" class="form-control" name="name" id="name" placeholder="Enter name">
@@ -58,7 +59,7 @@
                             <div class="clearfix"></div>
                             <div class="form-group col-xs-10 col-sm-10 col-md-4 col-lg-4">
                                 <label for="exampleInputPassword1">user_name</label>
-                                <input type="email" class="form-control" id="user_name" name="user_name" placeholder="Enter User name">
+                                <input type="text" class="form-control" id="user_name" name="username" placeholder="Enter User name">
                             </div>
                             <div class="form-group col-xs-10 col-sm-10 col-md-4 col-lg-4">
                                 <label for="exampleInputPassword1">Password</label>
@@ -68,7 +69,7 @@
                             <div class="clearfix"></div>
                             <div class="form-group col-xs-10 col-sm-10 col-md-4 col-lg-4">
                                 <label for="exampleInputPassword1">Working Area</label>
-                                <select class="form-control">
+                                <select class="form-control" name="working_area">
                                     <option>option 1</option>
                                     <option>option 2</option>
                                     <option>option 3</option>

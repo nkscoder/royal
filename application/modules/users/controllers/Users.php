@@ -163,35 +163,53 @@ class Users extends MX_Controller{
      $this->load->view('header/footer');
  }
 
- public function register(){
+ public function register()
+ {
+     if (islogin()) {
+         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
-     if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+             if ($this->input->post('role') == 'client') {
+                 $this->Mdl_users->setData('client', $this->input->post('name'), $this->input->post('email'), $this->input->post('mobile'), $this->input->post('address'), $this->input->post('username'), $this->input->post('password'), $this->input->post('role'));
+             }
 
-       $this->Mdl_users->setData('register',$this->input->post('name'),$this->input->post('email'),$this->input->post('mobile'),$this->input->post('address'),$this->input->post('username'),$this->input->post('password'));
+             if ($this->input->post('role') == 'contractor') {
+                 $this->Mdl_users->setData('contractor', $this->input->post('name'), $this->input->post('email'), $this->input->post('mobile'), $this->input->post('address'), $this->input->post('username'), $this->input->post('password'), $this->input->post('role'), $this->input->post('working_area'));
+             }
 
-                $data=$this->Mdl_users->checkUser();
-           if(!$data){
-               if($this->Mdl_users->register()){
-                   setInformUser('success','Your account is created successfully.');
-                   redirect(base_url('users/dashboard'));
-               }else{
-                   setInformUser('error','Some error Occurred!');
+             if ($this->input->post('role') == 'employee') {
+                 $this->Mdl_users->setData('employee', $this->input->post('name'), $this->input->post('email'), $this->input->post('mobile'), $this->input->post('address'), $this->input->post('username'), $this->input->post('password'), $this->input->post('role'), $this->input->post('working_area'));
+             }
 
-                   redirect(base_url('users/client'));
-               }
+             $data = $this->Mdl_users->checkUser();
+             if (!$data) {
+                 if ($this->Mdl_users->register()) {
+                     setInformUser('success', 'Your account is created successfully.');
+                     redirect(base_url('users/dashboard'));
+                 } else {
+                     setInformUser('error', 'Some error Occurred!');
 
-           }else{
+                     redirect(base_url('users/client'));
+                 }
 
-               setInformUser('error','Email Allready registered. Please Login. ');
+             } else {
 
-               redirect(base_url('users/client'));
-           }
+                 setInformUser('error', 'Email Allready registered. Please Login. ');
 
+                 redirect(base_url('users/client'));
+             }
+
+         } else {
+             redirect('users');
+         }
      }else{
+
          redirect('users');
      }
  }
-
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect(base_url('users?logout=1'));
+    }
 
  public function client(){
 
