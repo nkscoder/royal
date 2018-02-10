@@ -57,7 +57,6 @@ class Project extends MX_Controller
 
             }else{
                 $data['project'] = $this->Mdl_project->is_stage();
-                //print_r($data['project']);
                 $this->load->view('users/header/header');
                 $this->load->view('activity',$data);
                 $this->load->view('users/header/footer');
