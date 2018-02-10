@@ -235,5 +235,33 @@ class Users extends MX_Controller{
         $this->load->view('header/footer');
 
     }
+    public function profile(){
+        if (islogin()) {
+            if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+                $this->Mdl_users->setData('profile', $this->input->post('name'), $this->input->post('email'), $this->input->post('mobile'), $this->input->post('address'), $this->input->post('role'));
+                $data = $this->Mdl_users->getProfile();
+                if($data){
+
+                    setInformUser('success', 'Profile updated successfully.');
+                    redirect(base_url('users/profile'));
+
+
+                }else{
+
+                    setInformUser('success', 'Your account is created successfully.');
+                    redirect(base_url('users/profile'));
+                }
+            }else{
+                $data['profile'] = $this->Mdl_users->getProfile();
+                $this->load->view('header/header');
+                $this->load->view('profile',$data);
+                $this->load->view('header/footer');
+            }
+
+
+        }
+
+
+    }
 
 }

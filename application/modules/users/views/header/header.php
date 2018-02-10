@@ -9,26 +9,30 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>css/custom.css">
+
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>dist/css/skins/_all-skins.min.css">
     <!-- Morris chart -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/morris.js/morris.css">
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>bower_components/morris.js/morris.css">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>bower_components/jvectormap/jquery-jvectormap.css">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+          href="<?php echo asset_url(); ?>bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet"
+          href="<?php echo asset_url(); ?>bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="<?php echo  asset_url();?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="<?php echo asset_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,7 +42,8 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -64,16 +69,18 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="<?php echo  asset_url();?>dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs"><?php echo $this->session->userdata['user_data'][0]['fname'];?></span>
+                            <img src="<?php echo asset_url(); ?>dist/img/user2-160x160.jpg" class="user-image"
+                                 alt="User Image">
+                            <span class="hidden-xs"><?php echo $this->session->userdata['user_data'][0]['fname']; ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="<?php echo  asset_url();?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="<?php echo asset_url(); ?>dist/img/user2-160x160.jpg" class="img-circle"
+                                     alt="User Image">
 
                                 <p>
-                                    <?php echo $this->session->userdata['user_data'][0]['fname'];?>- Web Developer
+                                    <?php echo $this->session->userdata['user_data'][0]['fname']; ?>- Web Developer
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
@@ -81,13 +88,7 @@
                             <li class="user-body">
                                 <div class="row">
                                     <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
+                                        <a href="#">Change Password</a>
                                     </div>
                                 </div>
                                 <!-- /.row -->
@@ -95,10 +96,11 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="<?php echo base_url('users/profile'); ?>" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="<?php echo base_url('/users/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="<?php echo base_url('/users/logout'); ?>" class="btn btn-default btn-flat">Sign
+                                        out</a>
                                 </div>
                             </li>
                         </ul>
@@ -111,60 +113,15 @@
             </div>
         </nav>
     </header>
-    <aside class="main-sidebar">
-
-
-    <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?php echo  asset_url();?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p><?php echo $this->session->userdata['user_data'][0]['fname'];?></p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>ADD USER</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="active"><a href="<?php echo base_url('users/client');?>"><i class="fa fa-circle-o text-red"></i>Client</a></li>
-                    <li><a href="<?php echo base_url('users/contractor');?>"><i class="fa fa-circle-o text-yellow"></i> Contractor</a></li>
-                    <li><a href="<?php echo base_url('users/employee');?>"><i class="fa fa-circle-o text-aqua"></i> Employee</a></li>
-                </ul>
-            </li>
-
-        </ul>
-    </section>
-    </aside>
     <script type="text/javascript">
-        setTimeout(function() {
+        setTimeout(function () {
             $('#notification1').fadeOut('slow');
         }, 7000);
 
     </script>
 
     <script type="text/javascript">
-        setTimeout(function() {
+        setTimeout(function () {
             $('#notification').fadeOut('slow');
         }, 7000);
     </script>
@@ -172,9 +129,8 @@
     <?php
 
 
-
-    $logout=$this->input->get('logout');
-    if($logout){
+    $logout = $this->input->get('logout');
+    if ($logout){
         ?>
         <div class="notification" id="notification1">
 
@@ -185,19 +141,83 @@
         <?php
 
     }else if (getInformUser()){
+        ?>
+        <div class="notification" id="notification" >
+            <?php if (islogin()) {
+                if ($this->session->userdata['login_first'] == 1) {
+
+                    $this->session->set_userdata('login_first', 0);
+
+                    ?><h3>Welcome User</h3>
+
+                <?php }
+            } ?>
+            <p>   <?php echo getInformUser(); ?> </p>
+        </div>
+
+
+        <?php
+    }
     ?>
-    <div class="notification" id="notification" >
-        <?php  if(islogin()){if  ($this->session->userdata['login_first']==1) {
-
-            $this->session->set_userdata('login_first',0);
-
-            ?><h3>Welcome User</h3>
-
-        <?php }} ?>
-        <p>   <?php  echo getInformUser(); ?> </p>
-    </div>
+    <aside class="main-sidebar">
 
 
-<?php
-}
-?>
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="<?php echo asset_url(); ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p><?php echo $this->session->userdata['user_data'][0]['fname']; ?></p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+                </div>
+            </form>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>ADD USER</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="<?php echo base_url('users/client'); ?>"><i
+                                        class="fa fa-circle-o text-red"></i>Client</a></li>
+                        <li><a href="<?php echo base_url('users/contractor'); ?>"><i
+                                        class="fa fa-circle-o text-yellow"></i> Contractor</a></li>
+                        <li><a href="<?php echo base_url('users/employee'); ?>"><i class="fa fa-circle-o text-aqua"></i>
+                                Employee</a></li>
+                    </ul>
+                </li>
+                <li class="active treeview">
+                    <a href="#"><i class="fa fa-pie-chart"></i>
+                        <span>Project Stage</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="<?php echo base_url('project/stage') ?>"><i
+                                        class="fa fa-circle-o"></i>Stage</a></li>
+                        <li><a href="<?php echo base_url('project/activity'); ?>"><i
+                                        class="fa fa-circle-o"></i>Activity</a></li>
+                    </ul>
+                </li>
+                <li><a href="<?php base_url('project/create_project')?>"><i class="fa fa-book"></i> <span>Project</span></a></li>
+
+            </ul>
+        </section>
+    </aside>

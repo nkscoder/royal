@@ -166,6 +166,7 @@ class Mdl_users extends CI_Model
 
     public function setData()
     {
+
         switch (func_get_arg(0)) {
             case "checkUser":
                 $this->setEmail(func_get_arg(1));
@@ -206,6 +207,14 @@ class Mdl_users extends CI_Model
                 $this->setRole(func_get_arg(7));
                 $this->setWorkingarea(func_get_arg(8));
 
+                break;
+
+            case "profile":
+                $this->setFname(func_get_arg(1));
+                $this->setEmail(func_get_arg(2));
+                $this->setMobile(func_get_arg(3));
+                $this->setAddress(func_get_arg(4));
+                $this->setRole(func_get_arg(5));
                 break;
 //            case "setSessionData": {
 //
@@ -404,5 +413,30 @@ class Mdl_users extends CI_Model
 //        return $final_result;
 //
 //    }
+public function getProfile(){
 
+    if($this->role == 'profile'){
+        $data = array(
+        'fname' => $this->fname,
+        'username' => $this->username,
+        'email' => $this->email,
+        'mobile' => $this->mobile,
+        'address' => $this->address,
+    );
+        $this->db->where('mobile', $this->session->userdata['user_data'][0]['mobile']);
+        $query = $this->db->update('users', $data);
+        if($query){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        //$this->db->where('role',$this->session->userdata['user_data'][0]['role']);
+        $this->db->where('mobile',$this->session->userdata['user_data'][0]['mobile']);
+        $query = $this->db->get('users')->result_array();
+        return $query;
+    }
+
+
+    }
 }
