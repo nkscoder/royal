@@ -65,7 +65,7 @@ class Project extends MX_Controller
         }
 
     }
-//
+
     public function create_project(){
         $this->load->view('header/header');
         $this->load->view('project');
