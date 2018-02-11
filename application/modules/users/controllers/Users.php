@@ -263,5 +263,40 @@ class Users extends MX_Controller{
 
 
     }
+    public function password()
+    {
 
+        if (islogin()) {
+//            cPassword
+            if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+                $data = $this->input->post();
+
+                $this->Mdl_users->setData('password', $data['newPassword'], $data['oldPassword']);
+                if($data['newPassword']== $data['cPassword']) {
+                    if ($this->Mdl_users->password()) {
+                        setInformUser('success', 'your password has been successfully updated.');
+                        redirect(base_url('users/password/'));
+                    } else {
+                        setInformUser('error', 'password does not match old password');
+                        redirect(base_url('users/password/'));
+                    }
+                }else{
+                    setInformUser('error', 'new password  does not confirm password ; ');
+                    redirect(base_url('users/password/'));
+                }
+
+
+            } else {
+                $this->load->view('header/header');
+                $this->load->view('password');
+                $this->load->view('header/footer');
+            }
+
+
+        } else {
+            redirect(base_url('/users/'));
+
+        }
+
+    }
 }

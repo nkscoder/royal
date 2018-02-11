@@ -39,10 +39,11 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <form action="<?php echo base_url('project/stage');?>" method="post">
+                            <form action="<?php echo base_url('project/activity');?>" method="post">
+                                <input type="hidden" name="role" value="activity">
                                 <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                                     <label for="exampleInputEmail1">Select stage</label>
-                                    <select name="colors" class="form-control"  title="">
+                                    <select class="form-control"  name="stage_name">
                                         <option value="">Select Stage</option>
                                         <?php foreach ($project as $row){ ?>
 
@@ -53,13 +54,12 @@
 
                                 <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                                     <label for="exampleInputEmail1">Project Activity</label>
-                                    <input type="text" class="form-control" name="project_activity" id="project_stage"
+                                    <input type="text" class="form-control" name="activity_name" id="project_stage"
                                            placeholder="Enter project activity">
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
-                                    <button type="button" class="btn btn-primary" onclick="add_activity(); ">Submit
-                                    </button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
 
                             </form>

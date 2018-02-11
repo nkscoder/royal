@@ -18,6 +18,7 @@ class Mdl_users extends CI_Model
     private $address;
     private $role;
     private $workingarea;
+    private $newPassword;
 
     /**
      * @return mixed
@@ -163,6 +164,22 @@ class Mdl_users extends CI_Model
         $this->workingarea = $workingarea;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getNewPassword()
+    {
+        return $this->newPassword;
+    }
+
+    /**
+     * @param mixed $newPassword
+     */
+    public function setNewPassword($newPassword)
+    {
+        $this->newPassword = $newPassword;
+    }
+
 
     public function setData()
     {
@@ -216,6 +233,14 @@ class Mdl_users extends CI_Model
                 $this->setAddress(func_get_arg(4));
                 $this->setRole(func_get_arg(5));
                 break;
+
+
+            case "password":
+                $this->setNewPassword(func_get_arg(1));
+                $this->setPassword(func_get_arg(2));
+
+                break;
+
 //            case "setSessionData": {
 //
 //                $data = $this->db->where(array('eduworkers_users_username' => func_get_arg(1)))->select('eduworkers_users_username,eduworkers_users_id,eduworkers_users_roles_id,eduworkers_users_userfname')->get('eduworkers_users')->result_array();
@@ -439,4 +464,40 @@ public function getProfile(){
 
 
     }
+
+    public function password(){
+        $data = $this->db->where('id',$this->session->userdata['user_data'][0]['id'])->select('password')->get('users')->result_array();
+// echo $this->db->last_query();
+//   echo     $this->session->userdata['user_data']['id'];
+
+// print_r($this->session->userdata['user_data'][0]['id']); die;
+//      echo  $data[0]['password'];
+// print_r($data);die;
+//    echo    password_hash('q1w2e3r4', PASSWORD_DEFAULT);
+//    die;
+        if($data) {
+            //    echo $this->new_pass;
+//             print_r($data);die;
+            if (password_verify($this->password, $data[0]['password'])){
+                $this->setNewPassword(password_hash($this->newPassword, PASSWORD_DEFAULT));
+
+                $data=array('password'=>$this->newPassword);
+
+//                 print_r($data);die;
+                $this->db->where('id',$this->session->userdata['user_data'][0]['id'])->update('users',$data);
+
+                if ($this->db->affected_rows('users')) {
+                    /*print_r($data);die;*/
+                    return true;
+                }else{
+                    return false;
+                }
+
+
+            }else {return false;}
+
+        }else { return false;}
+
+    }
+
 }

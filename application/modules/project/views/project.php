@@ -55,7 +55,7 @@
         </div>
         <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
             <label for="exampleInputPassword1">Project stage</label>
-            <select class="form-control" id="example-multiple-optgroups">
+            <select class="form-control" id="example-multiple-optgroups" multiple onclick="select_stage(this.value);">
                     <option value="2-1">Option 2.1</option>
                     <option value="2-2">Option 2.2</option>
                     <option value="2-3">Option 2.3</option>
@@ -103,3 +103,9 @@
     <!-- /.content -->
   </div>
 
+<script>
+    function select_stage (value) {
+     alert(value);
+
+    }
+</script>

@@ -87,8 +87,8 @@
                             <!-- Menu Body -->
                             <li class="user-body">
                                 <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Change Password</a>
+                                    <div class="col-xs-8 text-center">
+                                        <a href="<?php echo base_url('/users/password/');?>">Change Password</a>
                                     </div>
                                 </div>
                                 <!-- /.row -->
@@ -187,7 +187,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active treeview">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>ADD USER</span>
                         <span class="pull-right-container">
@@ -203,7 +203,8 @@
                                 Employee</a></li>
                     </ul>
                 </li>
-                <li class="active treeview">
+
+                <li class="treeview">
                     <a href="#"><i class="fa fa-pie-chart"></i>
                         <span>Project Stage</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
@@ -216,7 +217,7 @@
                                         class="fa fa-circle-o"></i>Activity</a></li>
                     </ul>
                 </li>
-                <li><a href="<?php base_url('project/create_project')?>"><i class="fa fa-book"></i> <span>Project</span></a></li>
+                <li><a href="<?php echo base_url('project/')?>"><i class="fa fa-book"></i> <span>Project</span></a></li>
 
             </ul>
         </section>
