@@ -39,30 +39,85 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <form action="<?php echo base_url('project/activity');?>" method="post">
-                                <input type="hidden" name="role" value="activity">
-                                <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
-                                    <label for="exampleInputEmail1">Select stage</label>
-                                    <select class="form-control"  name="stage_name">
-                                        <option value="">Select Stage</option>
-                                        <?php foreach ($project as $row){ ?>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Add Activity
+                            </button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Project Activity</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="<?php echo base_url('project/activity');?>" method="post">
+                                                <input type="hidden" name="role" value="activity">
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <label for="exampleInputEmail1">Select stage</label>
+                                                    <select class="form-control"  name="stage_name">
+                                                        <option value="">Select Stage</option>
+                                                        <?php foreach ($project as $row){ ?>
 
-                                        <option value="<?= $row['id']; ?>"><?= $row['stage_name'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                                                            <option value="<?= $row['id']; ?>"><?= $row['stage_name'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
 
-                                <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
-                                    <label for="exampleInputEmail1">Project Activity</label>
-                                    <input type="text" class="form-control" name="activity_name" id="project_stage"
-                                           placeholder="Enter project activity">
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
+                                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <label for="exampleInputEmail1">Project Activity</label>
+                                                    <input type="text" class="form-control" name="activity_name" id="project_stage"
+                                                           placeholder="Enter project activity">
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
 
-                            </form>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="example" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Activity Name</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Activity Name</th>
+                                    <th>Status</th>
+
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                <?php
+                                $i=1;
+                                foreach ($activity as $row){
+                                    $status = '';
+                                    if($row['is_blocked'] == '0'){
+                                        $status = 'Active';
+                                    }else{
+                                        $status = 'In-active';
+                                    }
+
+                                    ?>
+                                    <tr>
+                                        <td><?= $i;?></td>
+                                        <td><?= $row['activity_name'];?></td>
+                                        <td><?= $status;?></td>
+                                    </tr>
+                                    <?php $i++; } ?>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- /.box-body -->
                     </div>

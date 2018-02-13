@@ -518,6 +518,17 @@ public function getProfile(){
                 return false;
             }
 
+
+        }else if($data =='employee'){
+            $this->db->where('role',$data);
+            $result = $this->db->get('users')->result_array();
+            if(!empty($result)){
+                return $result;
+            }else{
+                return false;
+            }
+
+
         }
 
 //        if($this->role == 'profile'){

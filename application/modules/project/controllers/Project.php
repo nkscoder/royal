@@ -35,8 +35,9 @@ class Project extends MX_Controller
                 }
 
             } else {
+                $result['stage'] = $this->Mdl_project->getData('stage');
                 $this->load->view('users/header/header');
-                $this->load->view('stage');
+                $this->load->view('stage',$result);
                 $this->load->view('users/header/footer');
             }
         }
@@ -61,6 +62,8 @@ class Project extends MX_Controller
                 }
             } else {
                 $data['project'] = $this->Mdl_project->is_stage();
+                $data['activity'] = $this->Mdl_project->getData('activity');
+                //print_r($result);
                 $this->load->view('users/header/header');
                 $this->load->view('activity', $data);
                 $this->load->view('users/header/footer');
