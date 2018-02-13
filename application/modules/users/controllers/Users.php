@@ -153,9 +153,9 @@ class Users extends MX_Controller{
     }
     public function employee(){
 
-
+        $result['employee'] = $this->Mdl_users->getClient('employee');
         $this->load->view('header/header');
-        $this->load->view('employee');
+        $this->load->view('employee',$result);
         $this->load->view('header/footer');
 
     }

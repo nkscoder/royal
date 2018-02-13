@@ -40,20 +40,78 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form role="form" action="<?php echo base_url('project/stage'); ?>" method="post">
-                            <input type="hidden" value="stage" name="role">
-                            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
-                                <label for="stage">Stage</label>
-                                <input type="text" class="form-control" name="stage" id="stage"
-                                       placeholder="Enter stage">
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
-                                <button type="submit" class="btn btn-primary">Submit
-                                </button>
-                            </div>
 
-                        </form>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Add Stage
+                        </button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Stage</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form role="form" action="<?php echo base_url('project/stage'); ?>" method="post">
+                                            <input type="hidden" value="stage" name="role">
+                                            <div class="form-group col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <label for="stage">Stage</label>
+                                                <input type="text" class="form-control" name="stage" id="stage"
+                                                       placeholder="Enter stage">
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                                <button type="submit" class="btn btn-primary">Submit
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="example" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Stage Name</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Activity Name</th>
+                                <th>Status</th>
+
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <?php
+                            $i=1;
+                            foreach ($stage as $row){
+                                $status = '';
+                                if($row['is_blocked'] == '0'){
+                                    $status = 'Active';
+                                }else{
+                                    $status = 'In-active';
+                                }
+
+                                ?>
+                                <tr>
+                                    <td><?= $i;?></td>
+                                    <td><?= $row['stage_name'];?></td>
+                                    <td><?= $status;?></td>
+                                </tr>
+                                <?php $i++; } ?>
+                            </tbody>
+                        </table>
+
+
                     </div>
                     <!-- /.box-body -->
                 </div>

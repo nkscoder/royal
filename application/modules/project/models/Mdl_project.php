@@ -147,4 +147,25 @@ class Mdl_project extends CI_Model
         }
 
     }
+    public function getData($data){
+        if($data =='stage'){
+            //$this->db->where('is_blocked','0');
+            $result = $this->db->get('stage')->result_array();
+            if(!empty($result)){
+                return $result;
+            }else{
+                return false;
+            }
+
+        }else if($data =='activity'){
+            //$this->db->where('is_blocked','0');
+            $result = $this->db->get('activite')->result_array();
+            if(!empty($result)){
+                return $result;
+            }else{
+                return false;
+            }
+
+        }
+    }
 }
