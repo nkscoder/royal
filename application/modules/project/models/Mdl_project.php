@@ -168,4 +168,15 @@ class Mdl_project extends CI_Model
 
         }
     }
+    public function getUser($data){
+        $this->db->where('role',$data);
+        $query = $this->db->get('users')->result_array();
+        if(!empty($query)){
+            return $query;
+        }else{
+            return false;
+        }
+
+    }
+
 }
