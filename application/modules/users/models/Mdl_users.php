@@ -19,6 +19,109 @@ class Mdl_users extends CI_Model
     private $role;
     private $workingarea;
     private $newPassword;
+    private $qualification;
+    private $designation;
+    private $dob;
+    private $gender;
+    private $status;
+    private $nationality;
+
+    /**
+     * @return mixed
+     */
+    public function getQualification()
+    {
+        return $this->qualification;
+    }
+
+    /**
+     * @param mixed $qualification
+     */
+    public function setQualification($qualification)
+    {
+        $this->qualification = $qualification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesignation()
+    {
+        return $this->designation;
+    }
+
+    /**
+     * @param mixed $designation
+     */
+    public function setDesignation($designation)
+    {
+        $this->designation = $designation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDob()
+    {
+        return $this->dob;
+    }
+
+    /**
+     * @param mixed $dob
+     */
+    public function setDob($dob)
+    {
+        $this->dob = $dob;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * @param mixed $nationality
+     */
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
+    }
+
 
     /**
      * @return mixed
@@ -223,6 +326,13 @@ class Mdl_users extends CI_Model
                 $this->setPassword(func_get_arg(6));
                 $this->setRole(func_get_arg(7));
                 $this->setWorkingarea(func_get_arg(8));
+                $this->setQualification(func_get_arg(9));
+                $this->setDesignation(func_get_arg(10));
+                $this->setDob(func_get_arg(11));
+                $this->setGender(func_get_arg(12));
+                $this->setStatus(func_get_arg(13));
+                $this->setNationality(func_get_arg(14));
+
 
                 break;
 
@@ -388,7 +498,9 @@ class Mdl_users extends CI_Model
               'address' => $this->address,
               'role' => 'contractor',
               'working_area' => $this->workingarea,
-              'status' => 0,
+              'status'=>'0'
+
+
           );
       } else if ($this->role == 'employee') {
           $data = array(
@@ -399,8 +511,13 @@ class Mdl_users extends CI_Model
               'mobile' => $this->mobile,
               'address' => $this->address,
               'role' => 'employee',
-              'status' => 0,
-              'working_area' => $this->workingarea
+              'working_area' => $this->workingarea,
+              'qualification'=>$this->qualification,
+              'qesignation'=>$this->designation,
+              'dob'=>$this->dob,
+              'gender'=>$this->gender,
+              'nationality'=>$this->nationality,
+              'status'=>$this->status
 
           );
       }

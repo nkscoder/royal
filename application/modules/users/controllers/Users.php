@@ -101,7 +101,8 @@ class Users extends MX_Controller{
              }
 
              if ($this->input->post('role') == 'employee') {
-                 $this->Mdl_users->setData('employee', $this->input->post('name'), $this->input->post('email'), $this->input->post('mobile'), $this->input->post('address'), $this->input->post('username'), $this->input->post('password'), $this->input->post('role'), $this->input->post('working_area'));
+
+                 $this->Mdl_users->setData('employee', $this->input->post('name'), $this->input->post('email'), $this->input->post('mobile'), $this->input->post('address'), $this->input->post('username'), $this->input->post('password'), $this->input->post('role'), $this->input->post('working_area'), $this->input->post('qualification'), $this->input->post('designation'), $this->input->post('dob'), $this->input->post('gender'), $this->input->post('status'), $this->input->post('nationality'));
              }
 
              $data = $this->Mdl_users->checkUser();
