@@ -142,6 +142,7 @@
     </div>
     <!-- /.content-wrapper -->
 
+<<<<<<< HEAD
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -152,4 +153,6 @@
         } );
     </script>
 
+=======
+>>>>>>> 9a97db293835009f1ca1084d5923ac1f3342350c
 

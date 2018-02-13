@@ -40,7 +40,13 @@ class Users extends MX_Controller{
        $password=$this->input->post('password');
        $this->Mdl_users->setData('checkUser',$email,$password);
        $data=$this->Mdl_users->checkUser();
+//       print_r($data); die;
        if($data){
+//                    print_r($data);
+//                     die;
+
+//                   $dashbord = $this->Mdl_users->login();
+//                   $user_data = $this->Mdl_users->getUserData();
                    $this->_setSessionData('authorize', $data);
                         setInformUser('success', 'Login successfully');
                         redirect(base_url('users/dashboard'));
