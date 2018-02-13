@@ -83,6 +83,7 @@
                                                 <label for="exampleInputPassword1">Qualification</label>
                                                 <input type="text" class="form-control" id="qualification" name="qualification" placeholder="Enter qualification">
                                             </div>
+
                                             <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                 <label for="exampleInputPassword1">Designation</label>
                                                 <input type="text" class="form-control" id="designation" name="designation" placeholder="Enter designation">
@@ -95,20 +96,20 @@
                                             <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                 <label for="exampleInputPassword1">Gender</label><br>
 
-                                                <label class="radio-inline"><input type="radio" name="gender">Male</label>
-                                                <label class="radio-inline"><input type="radio" name="gender">Female</label>
+                                                <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
+                                                <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                 <label for="exampleInputPassword1">Status</label>
-                                                <select class="form-control" name="working_area">
+                                                <select class="form-control" name="status">
                                                     <option value="1">Active</option>
                                                     <option value="0">In-active</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                 <label for="exampleInputPassword1">Nationality</label>
-                                                <input type="text" class="form-control" id="designation" name="designation" placeholder="Enter nationality">
+                                                <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Enter nationality">
                                             </div>
 
 
@@ -143,6 +144,8 @@
                                 <th>Address</th>
                                 <th>Email</th>
                                 <th>User Name</th>
+                                <th>Qualification</th>
+                                <th>Qesignation</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -153,6 +156,8 @@
                                 <th>Address</th>
                                 <th>Email</th>
                                 <th>User Name</th>
+                                <th>Qualification</th>
+                                <th>Qesignation</th>
 
                             </tr>
                             </tfoot>
@@ -167,6 +172,8 @@
                                     <td><?= $row['address'];?></td>
                                     <td><?= $row['email'];?></td>
                                     <td><?= $row['sname'];?></td>
+                                    <td><?= $row['qualification'];?></td>
+                                    <td><?= $row['qesignation'];?></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
