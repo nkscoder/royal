@@ -516,7 +516,7 @@ class Mdl_users extends CI_Model
               'qesignation'=>$this->designation,
               'dob'=>$this->dob,
               'gender'=>$this->gender,
-              'Nationality'=>$this->nationality,
+              'nationality'=>$this->nationality,
               'status'=>$this->status
 
           );
