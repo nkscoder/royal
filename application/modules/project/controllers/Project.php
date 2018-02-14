@@ -74,9 +74,20 @@ class Project extends MX_Controller
 
     public function index()
     {
+        $result['stage'] = $this->Mdl_project->getData('stage');
         $this->load->view('users/header/header');
-        $this->load->view('project');
+        $this->load->view('project',$result);
         $this->load->view('users/header/footer');
+
+    }
+
+    public function getuser(){
+
+        $data=$this->input->post('role');
+//        echo $data;
+        $result = $this->Mdl_project->getUser($data);
+         echo json_encode($result);
+
 
     }
 }

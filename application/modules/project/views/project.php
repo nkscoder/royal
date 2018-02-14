@@ -48,43 +48,55 @@
             <label for="exampleInputEmail1">Built up area</label>
             <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter built up area">
         </div>
+                  <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                      <label for="exampleInputEmail1">Plot Number</label>
+                      <input type="text" class="form-control" name="plotNumber" id="plotNumber" placeholder="Enter plot number">
+                  </div>
+
         <div class="clearfix"></div>
+
         <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
             <label for="exampleInputPassword1">Project location</label>
             <input class="form-control"  id="address" name="address" placeholder="Enter project location">
         </div>
         <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
-            <label for="exampleInputPassword1">Project stage</label>
-            <select class="form-control" id="example-multiple-optgroups" multiple onclick="select_stage(this.value);">
-                    <option value="2-1">Option 2.1</option>
-                    <option value="2-2">Option 2.2</option>
-                    <option value="2-3">Option 2.3</option>
-            </select>
-        </div>
-                  <div class="clearfix"></div>
-        <div class="form-group col-xs-10 col-sm-10 col-md-4 col-lg-4">
-            <label for="exampleInputPassword1">Project activity</label>
-            <select class="form-control">
-                <option>Choose Project activity</option>
-                <option value="1">USA</option>
-                <option value="2">Germany</option>
-                <option value="3">France</option>
-                <option value="4">Poland</option>
-                <option value="5">Japan</option>
-            </select>
-        </div>
-        <div class="form-group col-xs-10 col-sm-10 col-md-4 col-lg-4">
             <label for="exampleInputPassword1">Assign Project</label>
-            <select class="form-control">
-                <option>Select Id</option>
-                <option value="1">USA</option>
-                <option value="2">Germany</option>
-                <option value="3">France</option>
-                <option value="4">Poland</option>
-                <option value="5">Japan</option>
+            <select class="form-control" onchange="getuser(this.value)">
+                <option >Select </option>
+
+                <option value="client">Client</option>
+                <option value="contractor">Contractor</option>
+                <option value="employee">Employee</option>
             </select>
 
         </div>
+
+                  <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                      <label for="exampleInputPassword1">Assign User</label>
+                      <select class="form-control" id="assignuser">
+
+                      </select>
+
+                  </div>
+<!--                  --><?php //print_r($stage); ?>
+                  <div class="clearfix"></div>
+        <div class="form-group col-xs-10 col-sm-10 col-md-4 col-lg-4">
+            <label for="exampleInputPassword1">Project stage</label>
+            <select class="form-control" id="example-multiple-optgroups" multiple ">
+              <?php foreach( $stage as $data ){?>
+                <option value="<?php echo $data['id'];   ?>"><?php echo $data['stage_name'];?></option>
+                <?php } ?>
+            </select>
+        </div>
+
+
+
+                  <div class="form-group col-xs-10 col-sm-10 col-md-8 col-lg-8">
+                      <label for="exampleInputEmail1">Project Details</label>
+                      <textarea name="projectDetails" style=" width: 100%;" rows="8"></textarea>
+
+                  </div>
+
 
         <div class="clearfix"></div>
         <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
@@ -103,9 +115,38 @@
     <!-- /.content -->
   </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
-    function select_stage (value) {
-     alert(value);
 
+
+    function getuser (value){
+//       alert(123);
+//         var statevlau=document.getElementById('state').value;
+//       alert(statevlau);
+
+        var dd ={"role":value};
+        // alert(dd);
+        // console.log(dd);
+        $('#assignuser').empty();
+        $.ajax({
+            'url': "<?php echo base_url('/project/getuser');?>",
+            'type':"POST",
+            'dataType':"json",
+            data:dd,
+            success : function(json){
+            // alert(json);
+            //     console.log(json);
+                $('#assignuser').append($('<option>').text("Select User").attr('value',""));
+                $.each(json, function(i, value) {
+                    $('#assignuser').append($('<option>').text(value.fname).attr('value', value.id));
+                });
+//
+
+
+            },
+            error:function(res){
+                console.log("some error");
+            }
+        });
     }
 </script>
