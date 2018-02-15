@@ -13,6 +13,96 @@ class Mdl_project extends CI_Model
     private $role;
     private $activity_name;
     private $stage_name;
+    private $name;
+    private $area;
+    private $location;
+    private $plotNumber;
+    private $projectDetails;
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArea()
+    {
+        return $this->area;
+    }
+
+    /**
+     * @param mixed $area
+     */
+    public function setArea($area)
+    {
+        $this->area = $area;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlotNumber()
+    {
+        return $this->plotNumber;
+    }
+
+    /**
+     * @param mixed $plotNumber
+     */
+    public function setPlotNumber($plotNumber)
+    {
+        $this->plotNumber = $plotNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProjectDetails()
+    {
+        return $this->projectDetails;
+    }
+
+    /**
+     * @param mixed $projectDetails
+     */
+    public function setProjectDetails($projectDetails)
+    {
+        $this->projectDetails = $projectDetails;
+    }
+
+
+
+
+//$this->Mdl_project->setProject('project', $this->input->post('name'), $this->input->post('mobile'), $this->input->post('plotNumber'), $this->input->post('address'), $this->input->post('contractor'), $this->input->post('client'), $this->input->post('stage'), $this->input->post('employee'), $this->input->post('projectDetails'));
 
     /**
      * @return mixed
@@ -95,7 +185,15 @@ class Mdl_project extends CI_Model
                 $this->setRole(func_get_arg(3));
 
                 break;
+            case "project":
+                $this->setName(func_get_arg(1));
+                $this->setArea(func_get_arg(2));
+                $this->setPlotNumber(func_get_arg(3));
+                $this->setLocation(func_get_arg(4));
+                $this->setProjectDetails(func_get_arg(5));
 
+
+                break;
             default:
                 break;
         }
@@ -179,4 +277,32 @@ class Mdl_project extends CI_Model
 
     }
 
+    public function getUserAll(){
+        return $this->db->get('users')->result_array();
+
+    }
+public function createProject(){
+        $data = array(
+            'name' => $this->name,
+            'area'=>$this->area,
+            'location'=>$this->location,
+            'details'=>  $this->projectDetails,
+            'plotNumber'=>$this->plotNumber,
+            'status'=>"0",
+            'created_by' => $this->session->userdata['user_data'][0]['fname'],
+            'created_on'=>date("Y-m-d H:i:s"),
+            'ip' =>$_SERVER['REMOTE_ADDR']
+        );
+        $query= $this->db->insert('project', $data);
+        if($query){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+public function getProject(){
+        return $this->db->get('project')->result_array();
+}
 }
