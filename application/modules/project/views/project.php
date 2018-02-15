@@ -61,22 +61,22 @@
                                             <input type="hidden" name="client" value="client">
                                             <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                                                 <label for="exampleInputEmail1">Project Name</label>
-                                                <input type="name" class="form-control" name="name" id="name" placeholder="Enter project name">
+                                                <input type="name" required class="form-control" name="name" id="name" placeholder="Enter project name">
                                             </div>
                                             <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                                                 <label for="exampleInputEmail1">Built up area</label>
-                                                <input type="text" class="form-control"  name="area" placeholder="Enter built up area">
+                                                <input type="text" required class="form-control"  name="area" placeholder="Enter built up area">
                                             </div>
                                             <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                                                 <label for="exampleInputEmail1">Plot Number</label>
-                                                <input type="text" class="form-control" name="plotNumber" id="plotNumber" placeholder="Enter plot number">
+                                                <input type="text" required class="form-control" name="plotNumber" id="plotNumber" placeholder="Enter plot number">
                                             </div>
 
                                             <div class="clearfix"></div>
 
                                             <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                                                 <label for="exampleInputPassword1">Project location</label>
-                                                <input class="form-control"  id="address" name="location" placeholder="Enter project location">
+                                                <input class="form-control"  required id="address" name="location" placeholder="Enter project location">
                                             </div>
 
 
@@ -87,7 +87,7 @@
 
                                             <div class="form-group col-xs-10 col-sm-10 col-md-8 col-lg-8">
                                                 <label for="exampleInputEmail1">Project Details</label>
-                                                <textarea name="projectDetails" style=" width: 100%;" rows="2"></textarea>
+                                                <textarea required name="projectDetails" style=" width: 100%;" rows="2"></textarea>
 
                                             </div>
 
