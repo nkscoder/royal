@@ -68,16 +68,40 @@ class Project extends MX_Controller
                 $this->load->view('activity', $data);
                 $this->load->view('users/header/footer');
             }
+        }else{
+            redirect(base_url('users'));
         }
+
 
     }
 
     public function index()
     {
-        $result['stage'] = $this->Mdl_project->getData('stage');
-        $this->load->view('users/header/header');
-        $this->load->view('project',$result);
-        $this->load->view('users/header/footer');
+        if (islogin()) {
+            if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+
+                $this->Mdl_project->setProject('project', $this->input->post('name'), $this->input->post('area'), $this->input->post('plotNumber'), $this->input->post('location'), $this->input->post('projectDetails'));
+                $result = $this->Mdl_project->createProject();
+                if ($result) {
+                    setInformUser('success', 'Project created successfully.');
+                    redirect(base_url('project'));
+                } else {
+                    setInformUser('error', 'Some error occurred!');
+
+                    redirect(base_url('project'));
+                }
+
+       }
+       else {
+//           $result['stage'] = $this->Mdl_project->getData('stage');
+           $result['data'] = $this->Mdl_project->getProject();
+           $this->load->view('users/header/header');
+           $this->load->view('project', $result);
+           $this->load->view('users/header/footer');
+       }
+        }else{
+                redirect(base_url('users'));
+            }
 
     }
 
