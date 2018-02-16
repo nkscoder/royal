@@ -114,4 +114,54 @@ class Project extends MX_Controller
 
 
     }
+    public function createStage(){
+
+        if (islogin()) {
+            if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+
+//               echo  $this->input->post('name');
+//                echo $this->input->post('stage');
+//                die;
+//                $this->Mdl_project->setProject('stagemapping', $this->input->post('name'), $this->input->post('area'), $this->input->post('plotNumber'), $this->input->post('location'), $this->input->post('projectDetails'));
+                $result = $this->Mdl_project->createStageProject($this->input->post('project'),$this->input->post('stage'));
+                if ($result) {
+                    setInformUser('success', 'Stage created successfully.');
+                    redirect(base_url('project/createStage'));
+                } else {
+                    setInformUser('error', 'Some error occurred!');
+
+                    redirect(base_url('project'));
+                }
+
+            }
+            else {
+//           $result['stage'] = $this->Mdl_project->getData('stage');
+                $result['data'] = $this->Mdl_project->getProject();
+                $result['stage'] = $this->Mdl_project->getStages();
+                $result['StageProject'] = $this->Mdl_project->getStageProject();
+
+
+                $this->load->view('users/header/header');
+                $this->load->view('addstage',$result);
+                $this->load->view('users/header/footer');
+            }
+        }else{
+            redirect(base_url('users'));
+        }
+
+    }
+  public function getstage(){
+      $data=$this->input->post('role');
+         $result = $this->Mdl_project->getUser($data);
+             echo json_encode($result);
+
+  }
+
+ public function getactivite(){
+
+    }
+
+ public function stageProject(){
+
+ }
 }

@@ -289,6 +289,7 @@ public function createProject(){
             'details'=>  $this->projectDetails,
             'plotNumber'=>$this->plotNumber,
             'status'=>"0",
+//            'user_id'=>$this->session->userdata['user_data'][0]['id'],
             'created_by' => $this->session->userdata['user_data'][0]['fname'],
             'created_on'=>date("Y-m-d H:i:s"),
             'ip' =>$_SERVER['REMOTE_ADDR']
@@ -304,5 +305,38 @@ public function createProject(){
 
 public function getProject(){
         return $this->db->get('project')->result_array();
+}
+public function getStages(){
+
+    return $this->db->get('stage')->result_array();
+
+}
+
+public function createStageProject($project,$stage){
+//        print_r($stage);
+//        echo $project;die;
+
+    foreach ($stage as $row){
+            $data= array(
+                'project_id' => $project,
+                'stage_id'=>$row
+                );
+
+            $query= $this->db->insert('project_stage_mapping', $data);
+
+        }
+    if($query){
+        return true;
+    }else{
+        return false;
+    }
+
+//    echo $project;die;
+
+}
+public function getStageProject(){
+
+
+
 }
 }

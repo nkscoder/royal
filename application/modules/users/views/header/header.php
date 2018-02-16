@@ -215,6 +215,10 @@
                                         class="fa fa-circle-o"></i>Stage</a></li>
                         <li><a href="<?php echo base_url('project/activity'); ?>"><i
                                         class="fa fa-circle-o"></i>Activity</a></li>
+                        <li><a href="<?php echo base_url('project/createStage'); ?>"><i
+                                        class="fa fa-circle-o"></i>Add stage in project</a></li>
+
+
                     </ul>
                 </li>
                 <li><a href="<?php echo base_url('project/')?>"><i class="fa fa-book"></i> <span>Project</span></a></li>
