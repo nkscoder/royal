@@ -100,6 +100,8 @@
                                     <th>Address</th>
                                     <th>Email</th>
                                     <th>User Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -110,6 +112,8 @@
                                     <th>Address</th>
                                     <th>Email</th>
                                     <th>User Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
 
                                 </tr>
                                 </tfoot>
@@ -124,6 +128,19 @@
                                     <td><?= $row['address'];?></td>
                                     <td><?= $row['email'];?></td>
                                     <td><?= $row['sname'];?></td>
+                                    <td>
+                                        <div class="btn-group" id="status" data-toggle="buttons">
+                                            <label class="btn btn-default btn-on active">
+                                                <input type="radio" id="1_<?= $row['id']; ?>" value="1" name="status" checked="checked" onchange="status(this.id)">ON</label>
+                                            <label class="btn btn-default btn-off">
+                                                <input type="radio" id="0_<?= $row['id']; ?>" value="0" name="active" onchange="status(this.id)">OFF</label>
+                                        </div>
+                                    </td>
+                                    <td><a href="#" class="btn btn-primary a-btn-slide-text">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                            <span><strong>Edit</strong></span>
+                                        </a>
+                                    </td>
                                 </tr>
                                 <?php $i++; } ?>
                                 </tbody>
@@ -136,8 +153,32 @@
                 </div>
                 <!--/.col (right) -->
             </div>
-            <!-- /.row -->
+
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <script>
+        function status(id) {
+            var dd ={"id":id};
+            $.ajax({
+                'url' : "<?php echo base_url().'users/status'; ?>",
+                'type' : 'POST',  //the way you want to send data to your URL
+                //dataType: "json",
+                'data':dd,
+                'success' : function(data){
+                 alert(data);
+                },
+                'error': function(data){
+
+                }
+            });
+
+        }
+    </script>
+
+
+
+
+
+

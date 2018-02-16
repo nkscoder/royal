@@ -224,4 +224,11 @@ class Users extends MX_Controller{
         }
 
     }
+    public function status(){
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            print_r($_POST);
+        }
+
+
+    }
 }
