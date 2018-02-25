@@ -3,16 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a61df8c3-e14e-4ad1-b3c6-0e5f9383e5a7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/controllers/Users.php" afterPath="$PROJECT_DIR$/application/modules/users/controllers/Users.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/models/Mdl_users.php" afterPath="$PROJECT_DIR$/application/modules/users/models/Mdl_users.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/client.php" afterPath="$PROJECT_DIR$/application/modules/users/views/client.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/contractor.php" afterPath="$PROJECT_DIR$/application/modules/users/views/contractor.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/dashboard.php" afterPath="$PROJECT_DIR$/application/modules/users/views/dashboard.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/employee.php" afterPath="$PROJECT_DIR$/application/modules/users/views/employee.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/header/header.php" afterPath="$PROJECT_DIR$/application/modules/users/views/header/header.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/index.php" afterPath="$PROJECT_DIR$/application/modules/users/views/index.php" />
-      <change beforePath="$PROJECT_DIR$/assets/dist/img/user2-160x160.jpg" afterPath="$PROJECT_DIR$/assets/dist/img/user2-160x160.jpg" />
-      <change beforePath="$PROJECT_DIR$/assets/dist/js/adminlte.min.js" afterPath="$PROJECT_DIR$/assets/dist/js/adminlte.min.js" />
       <change beforePath="$PROJECT_DIR$/royal" afterPath="$PROJECT_DIR$/royal" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -373,7 +363,7 @@
       <workItem from="1519318681829" duration="3609000" />
       <workItem from="1519403950108" duration="3119000" />
       <workItem from="1519530221546" duration="5336000" />
-      <workItem from="1519550331826" duration="8488000" />
+      <workItem from="1519550331826" duration="8898000" />
     </task>
     <task id="LOCAL-00001" summary="display data">
       <created>1518542059218</created>
@@ -407,7 +397,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59309000" />
+    <option name="totallyTimeSpent" value="59719000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="107" y="151" width="1303" height="780" extended-state="6" />
