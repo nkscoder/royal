@@ -81,9 +81,11 @@ class Users extends MX_Controller{
     }
 
  public function dashboard(){
-
+     $result['client'] = $this->Mdl_users->getClient('client');
+     $result['contractor'] = $this->Mdl_users->getClient('contractor');
+     $result['employee'] = $this->Mdl_users->getClient('employee');
      $this->load->view('header/header');
-     $this->load->view('dashboard');
+     $this->load->view('dashboard',$result);
      $this->load->view('header/footer');
  }
 
@@ -226,7 +228,41 @@ class Users extends MX_Controller{
     }
     public function status(){
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
-            print_r($_POST);
+            //print_r($_POST);
+
+            $exp = explode('_',$_POST['id']);
+            $status= $exp['0'];
+            $id = $exp['1'];
+            $dd= $this->Mdl_users->status($status,$id);
+            if($dd ==1){
+                echo 0;
+
+            }else{
+              echo 1;
+            }
+
+        }
+
+
+    }
+    public function update(){
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            $dd= $this->Mdl_users->update($_POST);
+            if($this->input->post('role') == 'employee'){
+                $link = 'users/employee';
+            }elseif ($this->input->post('role') == 'client'){
+                $link = 'users/client';
+            }elseif ($this->input->post('role') == 'contractor'){
+                $link = 'users/contractor';
+            }
+
+            if($dd){
+                setInformUser('success', 'updated successfully.');
+                redirect(base_url($link));
+            }else{
+                setInformUser('success', 'something worng.');
+                redirect(base_url($link));
+            }
         }
 
 
