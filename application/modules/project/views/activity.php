@@ -54,16 +54,17 @@
                                         <div class="modal-body">
                                             <form action="<?php echo base_url('project/activity');?>" method="post">
                                                 <input type="hidden" name="role" value="activity">
+												<?php /*
                                                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                     <label for="exampleInputEmail1">Select stage</label>
                                                     <select class="form-control"  name="stage_name">
                                                         <option value="">Select Stage</option>
                                                         <?php foreach ($project as $row){ ?>
 
-                                                            <option value="<?= $row['id']; ?>"><?= $row['stage_name'] ?></option>
+                                                            <option value="<?= $row['id']; ?>"><?= $row['name'] ?></option>
                                                         <?php } ?>
                                                     </select>
-                                                </div>
+                                                </div> */ ?>
 
                                                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                     <label for="exampleInputEmail1">Project Activity</label>
@@ -82,12 +83,14 @@
                                     </div>
                                 </div>
                             </div>
+						</div>
                             <table id="example" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th>S.No</th>
                                     <th>Activity Name</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -95,6 +98,7 @@
                                     <th>S.No</th>
                                     <th>Activity Name</th>
                                     <th>Status</th>
+                                    <th>Action</th>
 
                                 </tr>
                                 </tfoot>
@@ -112,8 +116,23 @@
                                     ?>
                                     <tr>
                                         <td><?= $i;?></td>
-                                        <td><?= $row['activity_name'];?></td>
+										<?php if($_GET['edit'] == $row['id']){ ?>
+										<td>
+										<form action="<?php echo base_url('project/updateActivity/'); ?>" name="updatestage" method="post">
+											<input type="hidden" name="actid" value="<?= $row['id'];?>">
+											<input type="text" name="actname" value="<?= $row['name'];?>">
+											<input type="submit" name="submit" value="Update">
+										</form>
+										</td>
+										<?php }else{ ?>
+                                        <td><?= $row['name'];?></td>
+										<?php } ?>
                                         <td><?= $status;?></td>
+                                        <td>
+										<?php if($_GET['edit'] != $row['id']){ ?>
+										<a href="<?php echo base_url('project/activity/?edit=').$row['id']; ?>" class="btn btn-info">Edit</a>
+										<?php } ?>
+										<a href="<?php echo base_url('project/deleteActivity/').$row['id']; ?>" onclick="return confirm('Are you sure, you want to delete this activity?');" class="btn btn-info">Delete</a></td>
                                     </tr>
                                     <?php $i++; } ?>
                                 </tbody>

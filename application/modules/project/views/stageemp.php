@@ -36,50 +36,50 @@
                 <!-- general form elements disabled -->
                 <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Project Stage</h3>
+                        <h3 class="box-title">Stage Activity</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Add Stage
+						
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#stageemp">
+                            Map ProjectStage and Employee
                         </button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        
+						<div class="modal fade" id="stageemp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add stage in a project</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Map Stage and Employee</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form role="form" action="<?php echo base_url('project/createStage'); ?>" method="post">
+                                        <form role="form" action="<?php echo base_url('project/stageEmp'); ?>" method="post">
                                             <input type="hidden" value="stage" name="role">
-                                            <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                                <label for="stage">Project</label>
-<!--                                                --><?php //print_r($stage); ?>
-<!--                                                --><?php //print_r($stage); ?>
-                                                <select name="project" id="project" required>
-                                                    <option value="">Select Project</option>
-                                                   <?php foreach ($data as $row){?>
-                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-                                                    <?php }?>
-                                                </select>
-
-                                            </div>
-
+											<?php //for($k = 1; $k <= count($getEmployee); $k++){ ?>
                                             <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
                                                 <label for="stage">Stage</label>
+<!--                                                --><?php //print_r($stage); ?>
+<!--                                                --><?php //print_r($stage); ?>
+												<?php foreach ($stage as $row){?>
+                                                <input type="checkbox" name="stage[]" value="<?php echo $row['id'];?>"><?php echo $row['name'];?>
+												<?php } ?>
 
-                                                <select name="stage[]" id="stage" multiple required>
-                                                    <option value="">Select stage</option>
-                                                    <?php foreach ($stage as $row){?>
-                                                        <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
+                                            </div>
+
+                                            <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
+                                                <label for="stage">Employee List</label>
+
+                                                <select name="employee" id="employee" required>
+                                                    <option value="">Select Employee</option>
+                                                    <?php foreach ($getEmployee as $emp){?>
+                                                        <option value="<?php echo $emp['id'];?>"><?php echo $emp['username'];?></option>
                                                     <?php }?>
                                                 </select>
 
                                             </div>
+											<?php //} ?>
 
                                             <div class="clearfix"></div>
                                             <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
@@ -94,20 +94,21 @@
                                 </div>
                             </div>
                         </div>
-                       <table id="example_add_stage" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
+					</div>
+                       <table id="example_stageemp" class="table diaplay" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th>Project Name</th>
                                 <th>Stage Name</th>
+                                <th>Activities</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
                                 <th>S.No</th>
-                                <th>Project Name</th>
                                 <th>Stage Name</th>
+                                <th>Activities</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -123,51 +124,55 @@
                                 }else{
                                     $status = 'In-active';
                                 } */
-								foreach ($StageProject as $row){
-									$pro_name = $obj->Mdl_project->getProjectName($row['project_id']); 
+								foreach ($StageActivity as $row){
+									//print_r($row);
+									$pro_name = $obj->Mdl_project->getStageNames($row['project_stage_map_id']);
 									if($pro_name[0]['name']){
                                 ?>
                                 <tr>
                                     <td><?= $i;?></td>
-                                    <td><?php 
+                                    <td><?php  
 									echo $pro_name[0]['name'];
 									?></td>
-									<?php if($_GET['edit'] == $row['project_id']){?>
+									<?php if($_GET['edit'] == $row['project_stage_map_id']){
+										$pro_act = $obj->Mdl_project->getStageActivityList($row['project_stage_map_id']);
+										?>
 									<td>
-									<form role="form" action="<?php echo base_url('project/createStage'); ?>" method="post">
-										<input type="hidden" name="project" value="<?= $row['project_id']; ?>">
-										<select name="stage[]" id="stage" multiple required>
-											<option value="">Select stage</option>
-											<?php foreach ($stage as $rows){?>
-												<option value="<?php echo $rows['id'];?>"><?php echo $rows['name'];?></option>
-											<?php }?>
-										</select>
-										<input type="submit" name="submit" class="btn btn-primary" value="Update">
-									</form>
+										<form role="form" action="<?php echo base_url('project/stageActivity'); ?>" method="post">
+											<input type="hidden" name="stage" value="<?= $row['project_stage_map_id']; ?>">
+											<?php foreach ($activity as $rows){
+												$check_act = $obj->Mdl_project->checkAct($row['project_stage_map_id'],$rows['id']);
+												?>
+											<input type="checkbox" name="activity[]" value="<?php echo $rows['id'];?>" <?php if($check_act){ echo 'checked'; }?>><?php echo $rows['name'];
+											?>
+											<br>
+											<?php } ?>
+											<input type="submit" name="submit" class="btn btn-primary" value="Update">
+										</form>
 									</td>
 									<?php }else{ ?>
-                                    <td><?php $pro_stage = $obj->Mdl_project->getProjectStage($row['project_id']);
+                                    <td><?php $pro_act = $obj->Mdl_project->getStageActivityList($row['project_stage_map_id']);
 										/* echo '<pre>';
 										print_r($pro_stage);
-										echo '</pre>'; */
+										echo '</pre>';  */
 										$j=0;
-										foreach($pro_stage as $pro_nm){
+										foreach($pro_act as $pro_nm){
 											echo $pro_nm['name'].','; 
 											$j++;
 										}
 									?></td>
 									<?php } ?>
 									<td>
-										<a href="<?php echo base_url('project/deleteProjectStage/').$row['project_id']; ?>" onclick="return confirm('Are you sure, you want to delete?');" class="btn btn-info">Delete</a>&nbsp;
-										<?php if($_GET['edit'] == $row['project_id']){?>
+										<a href="<?php echo base_url('project/deleteStageActivity/').$row['project_stage_map_id']; ?>" onclick="return confirm('Are you sure, you want to delete?');" class="btn btn-info">Delete</a>&nbsp;
+										<?php if($_GET['edit'] == $row['project_stage_map_id']){?>
 										
 										
 										<?php }else{ ?>
-										<a href="<?php echo base_url('project/createStage/?edit=').$row['project_id']; ?>" class="btn btn-info">Edit</a>
+										<a href="<?php echo base_url('project/stageActivity/?edit=').$row['project_stage_map_id']; ?>" class="btn btn-info">Edit</a>
 									<?php } ?>
 									</td>
                                 </tr>
-									<?php $i++; } } ?>
+                                <?php $i++; } } ?>
                             </tbody>
                         </table>
 

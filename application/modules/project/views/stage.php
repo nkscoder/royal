@@ -74,12 +74,14 @@
                                 </div>
                             </div>
                         </div>
-                        <table id="example" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
+					</div>
+                        <table id="example_stage" class="table display" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>S.No</th>
                                 <th>Stage Name</th>
                                 <th>Status</th>
+								<th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -87,7 +89,7 @@
                                 <th>S.No</th>
                                 <th>Activity Name</th>
                                 <th>Status</th>
-
+								<th>Action</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -104,8 +106,23 @@
                                 ?>
                                 <tr>
                                     <td><?= $i;?></td>
-                                    <td><?= $row['stage_name'];?></td>
+									<?php if($_GET['edit'] == $row['id']){ ?>
+                                    <td>
+									<form action="<?php echo base_url('project/updateStage/'); ?>" name="updatestage" method="post">
+										<input type="hidden" name="stgid" value="<?= $row['id'];?>">
+										<input type="text" name="stgname" value="<?= $row['name'];?>">
+										<input type="submit" name="submit" value="Update">
+									</form>
+									</td>
+									<?php }else{ ?>
+                                    <td><?= $row['name'];?></td>
+									<?php } ?>
                                     <td><?= $status;?></td>
+									<td>
+									<?php if($_GET['edit'] != $row['id']){ ?>
+									<a href="<?php echo base_url('project/Stage/?edit=').$row['id']; ?>" class="btn btn-info">Edit</a>
+									<?php } ?>
+									<a href="<?php echo base_url('project/deleteStage/').$row['id']; ?>" onclick="return confirm('Are you sure, you want to delete this stage?');" class="btn btn-info">Delete</a></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>

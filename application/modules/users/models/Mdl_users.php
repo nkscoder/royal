@@ -672,6 +672,67 @@ public function getProfile(){
 
 
     }
+    public function status($status,$id){
+        $data = array(
+            'status' => $status,
+            'modified_by' => date('Y-m-d H:i:s'),
+        );
+
+        $this->db->where('id', $id);
+        $this->db->update('users', $data);
+        if($this->db->affected_rows() == '1'){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    public function update($data){
+//     print_r($data);
+//     die;
+        if($data['role']=='client'){
+            $update = array(
+                'fname' => $data['name'],
+                'mobile'=>$data['mobile'],
+                'address'=>$data['address'],
+                'email'=>$data['email'],
+                'sname'=>$data['username'],
+                'modified_by' => date('Y-m-d H:i:s'),
+            );
+
+        }elseif ($data['role']=='employee'){
+            $update = array(
+                'fname' => $data['name'],
+                'mobile'=>$data['mobile'],
+                'address'=>$data['address'],
+                'email'=>$data['email'],
+                'sname'=>$data['username'],
+                'qualification'=>$data['qualification'],
+                'qesignation'=>$data['designation'],
+                'modified_by' => date('Y-m-d H:i:s'),
+            );
+
+            }elseif ($data['role']=='contractor') {
+            $update = array(
+                'fname' => $data['name'],
+                'mobile' => $data['mobile'],
+                'address' => $data['address'],
+                'email' => $data['email'],
+                'sname' => $data['username'],
+                'working_area' => $data['working_area'],
+                'modified_by' => date('Y-m-d H:i:s'),
+            );
+        }
+        $this->db->where('id', $data['edit']);
+        $this->db->update('users', $update);
+        //echo $this->db->last_query(); get last query
+        if($this->db->affected_rows() == '1'){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 
 
 }
