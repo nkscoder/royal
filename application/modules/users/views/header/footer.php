@@ -353,6 +353,8 @@
         } );
 
         $('#example_view').DataTable();
+        $('#example_activity').DataTable();
+
     } );
 
 

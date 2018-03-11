@@ -84,7 +84,7 @@
                                 </div>
                             </div>
 						</div>
-                            <table id="example" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
+                            <table id="example_activity" class="table display" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th>S.No</th>
