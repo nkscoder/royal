@@ -587,6 +587,7 @@ public function getProfile(){
 // echo $this->db->last_query();
 //   echo     $this->session->userdata['user_data']['id'];
 
+
 // print_r($this->session->userdata['user_data'][0]['id']); die;
 //      echo  $data[0]['password'];
 // print_r($data);die;
