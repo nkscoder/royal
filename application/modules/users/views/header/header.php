@@ -34,29 +34,21 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo asset_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-    <link rel="stylesheet" href="<?php echo asset_url(); ?>/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
-    <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="/royal/users/dashboard" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Bucon</b>Technology</span>
+            <span class="logo-lg"><b>Croquis</b>Enginerring</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -82,7 +74,7 @@
                                      alt="User Image">
 
                                 <p>
-                                    <?php echo $this->session->userdata['user_data'][0]['fname']; ?>- Web Developer
+                                    <?php echo $this->session->userdata['user_data'][0]['fname']; ?>
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
@@ -191,7 +183,7 @@
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>ADD USER</span>
+                        <i class="fa fa-dashboard"></i> <span>User Master</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -208,19 +200,39 @@
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-pie-chart"></i>
-                        <span>Project Stage</span>
+                        <span>Stage Master</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
                     </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="active"><a href="<?php echo base_url('project/stage') ?>"><i
-                                        class="fa fa-circle-o"></i>Stage</a></li>
+                                        class="fa fa-circle-o"></i>Add Stage</a></li>
                         <li><a href="<?php echo base_url('project/activity'); ?>"><i
-                                        class="fa fa-circle-o"></i>Activity</a></li>
+                                        class="fa fa-circle-o"></i>Add Activity</a></li>
+						<li><a href="<?php echo base_url('project/stageActivity'); ?>"><i
+                                        class="fa fa-circle-o"></i>Stage Activity Mapping</a></li>
+						
+
+
                     </ul>
                 </li>
-                <li><a href="<?php echo base_url('project/')?>"><i class="fa fa-book"></i> <span>Project</span></a></li>
-
+				<li class="treeview">
+                    <a href="#"><i class="fa fa-book"></i>
+                        <span>Project Master</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+				<ul class="treeview-menu">
+                <li><a href="<?php echo base_url('project/')?>"><i class="fa fa-circle-o"></i> <span>Create Project</span></a></li>
+				<li><a href="<?php echo base_url('project/createStage'); ?>"><i
+                                        class="fa fa-circle-o"></i>Add stage in project</a></li>
+				<li><a href="<?php echo base_url('project/projectEmployee'); ?>"><i
+                                        class="fa fa-circle-o"></i>Add stage to employee</a></li>
+                                        <li><a href="<?php echo base_url('project/viewall'); ?>"><i
+                                        class="fa fa-circle-o"></i>View All</a></li>
+                    
+				</ul>
+				</li>
             </ul>
         </section>
     </aside>

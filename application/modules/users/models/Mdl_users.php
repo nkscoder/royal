@@ -647,6 +647,16 @@ public function getProfile(){
 
 
         }
+        else if($data =='project'){
+            $result = $this->db->get('project')->result_array();
+            if(!empty($result)){
+                return $result;
+            }else{
+                return false;
+            }
+
+
+        }
 
 //        if($this->role == 'profile'){
 //            $data = array(
@@ -731,6 +741,24 @@ public function getProfile(){
         }else{
             return false;
         }
+
+    }
+    public function adminChangepassword($password,$id){
+
+
+        $haspasword = password_hash($password, PASSWORD_DEFAULT);
+        $data=array(
+            'password'=>$haspasword,
+            'modified_by'=>date('Y-m-d H:i:s')
+        );
+        $this->db->where('id', $id);
+        $this->db->update('users', $data);
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+
 
     }
 

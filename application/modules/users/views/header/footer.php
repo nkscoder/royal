@@ -236,11 +236,128 @@
 <script src="<?php echo  asset_url();?>dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo  asset_url();?>dist/js/demo.js"></script>
-
 <!-- DataTables -->
-<script src="<?php echo  asset_url();?>/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo  asset_url();?>/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#example_project').DataTable( {
+            "columnDefs": [
+                {
+
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+
+                    "visible": false
+                }
+            ]
+        } );
+        $('#example_add_stage').DataTable( {
+            "columnDefs": [
+                {
+
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+
+                    "visible": false
+                }
+            ]
+        } );
+
+        $('#example_stage').DataTable( {
+            "columnDefs": [
+                {
+
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+
+                    "visible": false
+                }
+            ]
+        } );
+        $('#example_cont').DataTable( {
+            "columnDefs": [
+                {
+
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+
+                    "visible": false
+                }
+            ]
+        } );
+        $('#example_client').DataTable( {
+            "columnDefs": [
+                {
+
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+
+                    "visible": false
+                }
+            ]
+        } );
+        $('#example_project_emp').DataTable( {
+            "columnDefs": [
+                {
+
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+
+                    "visible": false
+                }
+            ]
+        } );
+        $('#example_stageemp').DataTable( {
+            "columnDefs": [
+                {
+
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+
+                    "visible": false
+                }
+            ]
+        } );
+        $('#example123').DataTable( {
+            "columnDefs": [
+                {
+
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+
+                    "visible": false
+                }
+            ]
+        } );
+
+        $('#example_view').DataTable();
+    } );
+
+
+</script>
 </body>
 
-<!-- Mirrored from adminlte.io/themes/AdminLTE/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Jan 2018 06:27:07 GMT -->
 </html>
+

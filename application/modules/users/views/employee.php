@@ -37,7 +37,10 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <!--data table-->
+
+                        <!--End datatable-->
+                        <button type="button btn_mrgin" id="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                             Add Employee
                         </button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -90,7 +93,7 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                                <label for="exampleInputPassword1">Qualification</label>
+                                                <label for="exampleInputPassword1">Date of Birth</label>
                                                 <input class="form-control" id="dob" name="dob" placeholder="Date of Birth" type="date">
                                             </div>
                                             <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -136,12 +139,12 @@
                             </div>
                         </div>
 
-                       <!--Edit popup modal-->
+                        <!--Edit popup modal-->
                         <div class="modal fade" id="exampleModald" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal Employee</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -183,7 +186,7 @@
                                                 <input type="text" class="form-control" id="designation_e" name="designation" placeholder="Enter designation">
                                             </div>
                                             <div class="clearfix"></div>
-                                          <div class="clearfix"></div>
+                                            <div class="clearfix"></div>
                                             <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
@@ -195,8 +198,50 @@
                             </div>
                         </div>
 
-                        <!--End Edit popup modal-->
-                        <table id="example" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
+                        <div class="modal fade" id="exampleModalemp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form role="form"  id="changepassword_form" action="<?php echo base_url('users/admin_changePassword');?>" method="post" >
+                                            <input type="hidden" name="changepasswod" id="change_password" value="">
+                                            <input type="hidden" name="link_cont" id="change_password" value="link_emp">
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <label for="exampleInputEmail1">New Password</label>
+                                                <input type="password" class="form-control" name="change_password" id="change_password" placeholder="Enter New Password">
+                                            </div>
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <label for="exampleInputEmail1">Confirm Password</label>
+                                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Enter Confirm Password">
+                                            </div>
+                                            <div class="clearfix"></div>
+
+
+
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                                <button type="submit" name="submit"  value="submit" class="btn btn-primary">Change password</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div
+
+                                <!--End Edit modal popup-->
+
+
+                                <!--End Edit popup modal-->
+
+
+                        <table id="example123" class="table display" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>S.No</th>
@@ -204,9 +249,11 @@
                                 <th>Mobile</th>
                                 <th>Address</th>
                                 <th>Email</th>
-                                <th>User Name</th>
+                                <th>U-Name</th>
                                 <th>Qualification</th>
                                 <th>Designation</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -216,12 +263,11 @@
                                 <th>Mobile</th>
                                 <th>Address</th>
                                 <th>Email</th>
-                                <th>User Name</th>
+                                <th>U Name</th>
                                 <th>Qualification</th>
-                                <th>Qesignation</th>
+                                <th>Designation</th>
                                 <th>Status</th>
                                 <th>Action</th>
-
                             </tr>
                             </tfoot>
                             <tbody>
@@ -237,21 +283,21 @@
                                     <td><?= $row['sname'];?></td>
                                     <td><?= $row['qualification'];?></td>
                                     <td><?= $row['qesignation'];?></td>
-                                    <td><?php
+                                    <td style="min-width: 100px">
+                                        <?php
+                                        $checked ='';
                                         if($row['status'] == 0){
                                             $checked ='checked';
-                                            $unchecked ='';
-
-                                        }else{
-                                            $checked ='';
-                                            $unchecked ='checked';
-                                        }
-                                        ?>
+                                        } ?>
                                         <div class="btn-group" id="status" data-toggle="buttons">
-                                            <label class="btn btn-default btn-on active">
-                                                <input type="radio" id="1_<?= $row['id']; ?>" value="0" name="status" <?php echo $checked; ?> onchange="status(this.id)">ON</label>
-                                            <label class="btn btn-default btn-off">
-                                                <input type="radio" id="0_<?= $row['id']; ?>" value="1" name="status" <?php echo $unchecked; ?> onchange="status(this.id)">OFF</label>
+                                            <label class="btn btn-default btn-on <?php if($row['status'] == 0){
+                                                echo 'active';
+                                            }?>">
+                                                <input type="radio" id="0_<?= $row['id']; ?>" value="0" name="status" <?php echo $checked; ?> onchange="status_emp(this.id)">ON</label>
+                                            <label class="btn btn-default btn-off <?php if($row['status'] == 1){
+                                                echo 'active';
+                                            }?>">
+                                                <input type="radio" id="1_<?= $row['id']; ?>" value="1" name="status" <?php echo $checked; ?> onchange="status_emp(this.id)">OFF</label>
                                         </div>
                                     </td>
                                     <td>
@@ -259,16 +305,20 @@
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         <span><strong>Edit</strong></span>
                                         </a>
+                                        <a type="button" id="<?php echo $row['id']; ?>" onclick="change_passwordemp(this.id);" class="btn btn-primary" style="display: inline" data-toggle="modal" data-target="#exampleModalemp">
+                                            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                            <span><strong></strong></span>
+                                        </a>
                                     </td>
                                 </tr>
                                 <span id="dispay_value_<?php echo $row['id']; ?>" style="display: none">
                                         <?php echo json_encode($row);?>
                                     </span>
                                 <?php $i++; } ?>
+
+
                             </tbody>
                         </table>
-
-
 
 
                     </div>
@@ -284,7 +334,8 @@
 </div>
 <!-- /.content-wrapper -->
 <script>
-    function status(id) {
+
+    function status_emp(id) {
         var dd ={"id":id};
         $.ajax({
             'url' : "<?php echo base_url().'users/status'; ?>",
@@ -315,6 +366,10 @@
         $('#user_name_e').val(t['sname']);
         $('#qualification_e').val(t['qualification']);
         $('#designation_e').val(t['qesignation']);
+
+    }
+    function change_passwordemp(id) {
+        $('#change_password').val(id);
 
     }
 

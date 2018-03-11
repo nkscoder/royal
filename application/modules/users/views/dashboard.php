@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nitesh
+ * User: sitesh
  * Date: 7/2/18
  * Time: 8:53 PM
  */
@@ -66,14 +66,14 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>44</h3>
+                         <h3><?php echo count($project); ?></h3>
 
                         <p>Total Project</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="<?php echo base_url('users/employee'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo base_url('project/'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

@@ -36,3 +36,6 @@
 
 .btn-default.btn-on-4.active{background-color: #006FFC;color: #5BB75B;}
 .btn-default.btn-off-4.active{background-color: #DA4F49;color: #DA4F49;}
+.btn_mrgin{
+    margin-bottom: 2%;
+}

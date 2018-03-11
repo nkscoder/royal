@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nitesh
+ * User: sitesh
  * Date: 7/2/18
  * Time: 11:15 PM
  */
@@ -164,11 +164,47 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="modal fade" id="exampleModalcont" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form role="form"  id="changepassword_form" action="<?php echo base_url('users/admin_changePassword');?>" method="post" >
+                                            <input type="hidden" name="changepasswod" id="change_password" value="">
+                                            <input type="hidden" name="link_cont" id="change_password" value="link_cont">
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <label for="exampleInputEmail1">New Password</label>
+                                                <input type="password" class="form-control" name="change_password" id="change_password" placeholder="Enter New Password">
+                                            </div>
+                                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <label for="exampleInputEmail1">Confirm Password</label>
+                                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Enter Confirm Password">
+                                            </div>
+                                            <div class="clearfix"></div>
+
+
+
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                                <button type="submit" name="submit"  value="submit" class="btn btn-primary">Change password</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
                         </div
 
                         <!--End Edit modal popup-->
 
-                        <table id="example" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
+                        <table id="example_cont" class="table display" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>S.No</th>
@@ -178,6 +214,8 @@
                                 <th>Email</th>
                                 <th>User Name</th>
                                 <th>Working Area </th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -208,26 +246,29 @@
                                     <td><?= $row['working_area'];?></td>
                                     <td>
                                         <?php
+                                        $checked ='';
                                         if($row['status'] == 0){
                                             $checked ='checked';
-                                            $unchecked ='';
-
-                                        }else{
-                                            $checked ='';
-                                            $unchecked ='checked';
-                                        }
-                                        ?>
+                                        } ?>
                                         <div class="btn-group" id="status" data-toggle="buttons">
-                                            <label class="btn btn-default btn-on active">
-                                                <input type="radio" id="1_<?= $row['id']; ?>" value="0" name="status" <?php echo $checked; ?> onchange="status(this.id)">ON</label>
-                                            <label class="btn btn-default btn-off">
-                                                <input type="radio" id="0_<?= $row['id']; ?>" value="1" name="status" <?php echo $unchecked; ?> onchange="status(this.id)">OFF</label>
+                                            <label class="btn btn-default btn-on <?php if($row['status'] == 0){
+                                                echo 'active';
+                                            }?>">
+                                                <input type="radio" id="0_<?= $row['id']; ?>" value="0" name="status" <?php echo $checked; ?> onchange="status(this.id)">ON</label>
+                                            <label class="btn btn-default btn-off <?php if($row['status'] == 1){
+                                                echo 'active';
+                                            }?>">
+                                                <input type="radio" id="1_<?= $row['id']; ?>" value="1" name="status" <?php echo $checked; ?> onchange="status(this.id)">OFF</label>
                                         </div>
                                     </td>
                                     <td>
                                         <a type="button" id="<?php echo $row['id']; ?>" onclick="display_value(this.id);" class="btn btn-primary" data-toggle="modal" data-target="#exampleModald">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         <span><strong>Edit</strong></span>
+                                        </a>
+                                        <a type="button" id="<?php echo $row['id']; ?>" onclick="change_passwordemp(this.id);" class="btn btn-primary" style="display: inline" data-toggle="modal" data-target="#exampleModalcont">
+                                            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                            <span><strong></strong></span>
                                         </a>
                                     </td>
                                 </tr>
@@ -282,6 +323,10 @@
         $('#email_e').val(t['email']);
         $('#user_name_e').val(t['sname']);
         $('#working_area_e').val(t['working_area']);
+    }
+    function change_passwordcont(id) {
+        $('#change_password').val(id);
+
     }
 </script>
 
