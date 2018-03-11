@@ -1,26 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a61df8c3-e14e-4ad1-b3c6-0e5f9383e5a7" name="Default" comment="work in status in client page">
+    <list default="true" id="a61df8c3-e14e-4ad1-b3c6-0e5f9383e5a7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/modules/profiles/upload/1442574026Koala.jpg" afterPath="$PROJECT_DIR$/application/modules/profiles/upload/1442574026Koala.jpg" />
-      <change beforePath="$PROJECT_DIR$/application/modules/project/controllers/Project.php" afterPath="$PROJECT_DIR$/application/modules/project/controllers/Project.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/project/models/Mdl_project.php" afterPath="$PROJECT_DIR$/application/modules/project/models/Mdl_project.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/project/views/activity.php" afterPath="$PROJECT_DIR$/application/modules/project/views/activity.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/project/views/project.php" afterPath="$PROJECT_DIR$/application/modules/project/views/project.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/project/views/stage.php" afterPath="$PROJECT_DIR$/application/modules/project/views/stage.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/controllers/Users.php" afterPath="$PROJECT_DIR$/application/modules/users/controllers/Users.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/models/Mdl_users.php" afterPath="$PROJECT_DIR$/application/modules/users/models/Mdl_users.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/client.php" afterPath="$PROJECT_DIR$/application/modules/users/views/client.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/contractor.php" afterPath="$PROJECT_DIR$/application/modules/users/views/contractor.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/dashboard.php" afterPath="$PROJECT_DIR$/application/modules/users/views/dashboard.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/employee.php" afterPath="$PROJECT_DIR$/application/modules/users/views/employee.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/header/footer.php" afterPath="$PROJECT_DIR$/application/modules/users/views/header/footer.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/header/header.php" afterPath="$PROJECT_DIR$/application/modules/users/views/header/header.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/indec_backup/index.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/index.php" afterPath="$PROJECT_DIR$/application/modules/users/views/index.php" />
-      <change beforePath="$PROJECT_DIR$/application/modules/users/views/index1 .php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/assets/css/custom.css" afterPath="$PROJECT_DIR$/assets/css/custom.css" />
       <change beforePath="$PROJECT_DIR$/royal" afterPath="$PROJECT_DIR$/royal" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -98,8 +80,8 @@
       <file leaf-file-name="employee.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/modules/users/views/employee.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="306" column="44" lean-forward="true" selection-start-line="306" selection-start-column="44" selection-end-line="306" selection-end-column="44" />
+            <state relative-caret-position="428">
+              <caret line="315" column="43" lean-forward="true" selection-start-line="315" selection-start-column="43" selection-end-line="315" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#a#1;n#td#9;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -439,7 +421,7 @@
       <workItem from="1520610211144" duration="1935000" />
       <workItem from="1520696728296" duration="1489000" />
       <workItem from="1520749258333" duration="726000" />
-      <workItem from="1520752868737" duration="4156000" />
+      <workItem from="1520752868737" duration="4237000" />
     </task>
     <task id="LOCAL-00001" summary="display data">
       <created>1518542059218</created>
@@ -476,11 +458,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519561790912</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="work in status in client page">
+      <created>1520757057480</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1520757057480</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114478000" />
+    <option name="totallyTimeSpent" value="114559000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="107" y="151" width="1303" height="780" extended-state="6" />
@@ -878,8 +867,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/users/views/employee.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="306" column="44" lean-forward="true" selection-start-line="306" selection-start-column="44" selection-end-line="306" selection-end-column="44" />
+        <state relative-caret-position="428">
+          <caret line="315" column="43" lean-forward="true" selection-start-line="315" selection-start-column="43" selection-end-line="315" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#a#1;n#td#9;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
           </folding>
