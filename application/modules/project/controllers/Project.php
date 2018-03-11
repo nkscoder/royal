@@ -448,5 +448,39 @@ class Project extends MX_Controller
         $this->load->view('projecteemp','projectstatus');
         $this->load->view('users/header/footer');
     }
+
+  public function generalProject(){
+      if (islogin()) {
+          if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+              $project = $this->input->post('project');
+              $date = $this->input->post('projectdate');
+//              echo $date;
+//              echo $project;
+
+              $data1['project']=$this->Mdl_project->getProjectAndDate();
+
+              $data['projectdata']=$this->Mdl_project->getProjectAndByDate($project,$date);
+//                            print_r($data['projectdata']); die;
+
+              $this->load->view('users/header/header',$data1);
+              $this->load->view('generalProject',$data);
+              $this->load->view('users/header/footer');
+          }
+          else{
+              $data1['project']=$this->Mdl_project->getProjectAndDate();
+
+//              print_r($data['project'])
+              $this->load->view('users/header/header');
+              $this->load->view('generalProject',$data1);
+              $this->load->view('users/header/footer');
+          }
+
+
+
+      }else{
+          redirect(base_url('users'));
+      }
+
+  }
   	
 }

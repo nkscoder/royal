@@ -8,6 +8,7 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+.idea/workspace.xml
 
 
 user_guide_src/build/*

@@ -645,5 +645,58 @@ public function createStageActEmp($stage,$emp){
 						->get('project_to_employee_mapping');
 			return $query->num_rows();
 	}
-	
+	public function getProjectAndDate(){
+
+        if($this->session->userdata['user_data'][0]['role']=="client")
+        {
+            $this->db->where('client_id',$this->session->userdata['user_data'][0]['id']);
+
+        }
+
+
+        if($this->session->userdata['user_data'][0]['role']=="contractor")
+        {
+            $this->db->where('contractor_id',$this->session->userdata['user_data'][0]['id']);
+
+        }
+        if($this->session->userdata['user_data'][0]['role']=="admin")
+        {
+            $this->db->where('created_by',$this->session->userdata['user_data'][0]['role']);
+
+        }
+
+        return  $this->db->get('project')->result_array();
+
+//
+//
+//        $query = $this->db->update('activity',array('name' => $actname));
+//        if($query){
+//            return true;
+//        }else{
+//            return false;
+//        }
+
+    }
+
+    public function getProjectAndByDate($project,$date){
+
+
+
+            $this->db->where('id',$project);
+            $this->db->where('created_on',$date);
+
+        return  $this->db->get('project')->result_array();
+
+//
+//
+//        $query = $this->db->update('activity',array('name' => $actname));
+//        if($query){
+//            return true;
+//        }else{
+//            return false;
+//        }
+
+    }
+
+
 }

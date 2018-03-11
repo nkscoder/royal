@@ -226,12 +226,16 @@
                 <li><a href="<?php echo base_url('project/')?>"><i class="fa fa-circle-o"></i> <span>Create Project</span></a></li>
 				<li><a href="<?php echo base_url('project/createStage'); ?>"><i
                                         class="fa fa-circle-o"></i>Add stage in project</a></li>
-				<li><a href="<?php echo base_url('project/projectEmployee'); ?>"><i
+				<li><a href="<?php echo base_url('project/projectEmployee'); ?>">
+                        <i
                                         class="fa fa-circle-o"></i>Add stage to employee</a></li>
                                         <li><a href="<?php echo base_url('project/viewall'); ?>"><i
                                         class="fa fa-circle-o"></i>View All</a></li>
-                    
-				</ul>
+                    <li><a href="<?php echo base_url('project/generalProject'); ?>"><i
+                                    class="fa fa-circle-o"></i>General Project Table </a></li>
+
+
+                </ul>
 				</li>
             </ul>
         </section>
