@@ -73,8 +73,8 @@
                                         <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
                                             <select name="projectdate" id="date" required>
                                                 <option value="">Select Date</option>
-                                                <?php foreach ($project as $emp){?>
-                                                    <option value="<?php echo $emp['created_on'];?>"><?php echo $emp['created_on'];?></option>
+                                                <?php foreach ($date as $emp){?>
+                                                    <option value="<?php echo $emp['datetime'];?>"><?php echo $emp['datetime'];?></option>
                                                 <?php }?>
                                             </select>
 
@@ -121,6 +121,7 @@
 
                         <tbody>
                         <?php
+//                         print_r($projectdata);
                         $i=1;
                         foreach ($projectdata as $pro){
 

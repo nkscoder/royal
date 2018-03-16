@@ -233,6 +233,8 @@
                                         class="fa fa-circle-o"></i>View All</a></li>
                     <li><a href="<?php echo base_url('project/generalProject'); ?>"><i
                                     class="fa fa-circle-o"></i>General Project Table </a></li>
+                    <li><a href="<?php echo base_url('project/report'); ?>"><i
+                                    class="fa fa-circle-o"></i>Report </a></li>
 
 
                 </ul>

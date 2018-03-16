@@ -35,7 +35,9 @@ class Project extends MX_Controller
                 }
 
             } else {
+
                 $result['stage'] = $this->Mdl_project->getData('stage');
+
                 $this->load->view('users/header/header');
                 $this->load->view('stage',$result);
                 $this->load->view('users/header/footer');
@@ -457,10 +459,10 @@ class Project extends MX_Controller
 //              echo $date;
 //              echo $project;
 
-              $data1['project']=$this->Mdl_project->getProjectAndDate();
 
               $data['projectdata']=$this->Mdl_project->getProjectAndByDate($project,$date);
-//                            print_r($data['projectdata']); die;
+                            print_r($data['projectdata']); die;
+              $data1['project']=$this->Mdl_project->getProjectAndDate();
 
               $this->load->view('users/header/header',$data1);
               $this->load->view('generalProject',$data);
@@ -468,9 +470,13 @@ class Project extends MX_Controller
           }
           else{
               $data1['project']=$this->Mdl_project->getProjectAndDate();
-
+//              $data1['project']=$this->Mdl_project->getProjectAndDate();
+              $result['date'] = $this->Mdl_project->getreportDate();
+//              print_r($result['date'] );
+//              print_r($result['stage'] );
+//              die;
 //              print_r($data['project'])
-              $this->load->view('users/header/header');
+              $this->load->view('users/header/header',$result);
               $this->load->view('generalProject',$data1);
               $this->load->view('users/header/footer');
           }
@@ -482,5 +488,63 @@ class Project extends MX_Controller
       }
 
   }
+
+
+
+  public function Report(){
+      if (islogin()) {
+          if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+              $project = $this->input->post('project');
+              $date = $this->input->post('date');
+              $stage = $this->input->post('stage');
+
+//              echo $date;
+//              echo $project;
+
+
+              $data['projectdata']=$this->Mdl_project->getreport($project,$date,$stage);
+//              echo "<pre/>";
+//              print_r($data['projectdata']); die;
+              $data1['project']=$this->Mdl_project->getProjects();
+
+              $this->load->view('users/header/header',$data1);
+              $this->load->view('report',$data);
+              $this->load->view('users/header/footer');
+          }
+          else{
+              $data1['project']=$this->Mdl_project->getProjects();
+//              $data1['project']=$this->Mdl_project->getProjectAndDate();
+//              $result['date'] = $this->Mdl_project->getreportDate();
+//              print_r($result['date'] );
+//              print_r($result['stage'] );
+//              die;
+//              print_r($data['project'])
+              $this->load->view('users/header/header');
+              $this->load->view('report',$data1);
+              $this->load->view('users/header/footer');
+          }
+
+
+
+      }else{
+          redirect(base_url('users'));
+      }
+
+
+  }
+    public function stage_calls(){
+        $projectid = $this->input->post('projectid');
+        $res_stg = $this->Mdl_project->getProjectStage($projectid);
+        $stg_return='<option value="">Select Stage </option>';
+        foreach($res_stg as $stage_data){
+            $stg_return .= '<option   value="'.$stage_data['stage_id'].'">'.$stage_data['name'].'</option>';
+        }
+        echo $stg_return;
+        /* echo '<pre>';
+        print_r($res);
+        echo '</pre>'; */
+    }
+
+
   	
 }
