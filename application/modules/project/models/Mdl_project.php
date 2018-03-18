@@ -712,17 +712,34 @@ public function createStageActEmp($stage,$emp){
 //         print_r($date); die;
       }
    public function getProjects(){
-       return $this->db->select('*')->from('project')->get()->result_array();
+
+       if($this->session->userdata['user_data'][0]['role']=="client")
+       {
+           $this->db->where('client_id',$this->session->userdata['user_data'][0]['id']);
+
+       }
+
+
+       if($this->session->userdata['user_data'][0]['role']=="contractor")
+       {
+           $this->db->where('contractor_id',$this->session->userdata['user_data'][0]['id']);
+
+       }
+       if($this->session->userdata['user_data'][0]['role']=="admin")
+       {
+           return $this->db->select('*')->from('project')->get()->result_array();
+
+       }
+
+       return  $this->db->get('project')->result_array();
+
+//
+//       return $this->db->select('*')->from('project')->get()->result_array();
 
    }
 
-    public function getreport($project,$date,$stage){
+    public function getreportStage($project,$stage){
         $this->db->select('*');
-        if($date)
-        {
-            $this->db->where('datetime',$date);
-
-        }
 
 
         if($stage)
@@ -732,12 +749,12 @@ public function createStageActEmp($stage,$emp){
         }
         $this->db->where('project_id',$project);
 
-
+//        echo $project;
         $this->db->from('inspection_report');
         $this->db->join('stage', 'inspection_report.stage_id = stage.id');
         $this->db->join('stage_activity_mapping', 'stage.id = stage_activity_mapping.project_stage_map_id');
-        $this->db->join('activity', 'stage_activity_mapping.activity_id = activity.id');
-        $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id');
+//        $this->db->join('activity', 'stage_activity_mapping.activity_id = activity.id');
+//        $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id');
 
 
 

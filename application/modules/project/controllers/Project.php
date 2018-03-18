@@ -491,34 +491,49 @@ class Project extends MX_Controller
 
 
 
-  public function Report(){
+  public function Report1(){
       if (islogin()) {
           if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
-              $project = $this->input->post('project');
-              $date = $this->input->post('date');
-              $stage = $this->input->post('stage');
 
-//              echo $date;
-//              echo $project;
+              if( $this->input->post('reportType')=="stage") {
+                  $data1['project']=$this->Mdl_project->getProjects();
+                  $this->load->view('users/header/header');
+                  $this->load->view('report_stage',$data1);
+                  $this->load->view('users/header/footer');
+
+                }
+
+              if( $this->input->post('reportType')=="date") {
+                  $data1['project']=$this->Mdl_project->getProjects();
+                  $this->load->view('users/header/header');
+                  $this->load->view('report_date',$data1);
+                  $this->load->view('users/header/footer');
+
+              }
 
 
-              $data['projectdata']=$this->Mdl_project->getreport($project,$date,$stage);
-//              echo "<pre/>";
-//              print_r($data['projectdata']); die;
-              $data1['project']=$this->Mdl_project->getProjects();
+                  $project = $this->input->post('project');
+                  $date = $this->input->post('date');
+                  $stage = $this->input->post('stage');
 
-              $this->load->view('users/header/header',$data1);
-              $this->load->view('report',$data);
-              $this->load->view('users/header/footer');
+
+                  $data['projectdata'] = $this->Mdl_project->getreport($project, $date, $stage);
+
+                  $data1['project'] = $this->Mdl_project->getProjects();
+
+                  $this->load->view('users/header/header', $data1);
+                  $this->load->view('report', $data);
+                  $this->load->view('users/header/footer');
+
+
+
+
+
+
+
           }
           else{
               $data1['project']=$this->Mdl_project->getProjects();
-//              $data1['project']=$this->Mdl_project->getProjectAndDate();
-//              $result['date'] = $this->Mdl_project->getreportDate();
-//              print_r($result['date'] );
-//              print_r($result['stage'] );
-//              die;
-//              print_r($data['project'])
               $this->load->view('users/header/header');
               $this->load->view('report',$data1);
               $this->load->view('users/header/footer');
@@ -530,6 +545,59 @@ class Project extends MX_Controller
           redirect(base_url('users'));
       }
 
+
+  }
+
+  public function reportDate(){
+      if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+
+
+      }
+      else {
+          $data1['project'] = $this->Mdl_project->getProjects();
+          $this->load->view('users/header/header');
+          $this->load->view('report_date', $data1);
+          $this->load->view('users/header/footer');
+      }
+  }
+
+    public function reportStage(){
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+
+                   $project = $this->input->post('project');
+                  $stage = $this->input->post('stage');
+                  $data1['project']=$this->Mdl_project->getreportStage($project,$stage);
+                  echo "<pre>";
+                  print_r($data1['project']);die;
+
+
+        }
+        else {
+            $data1['project'] = $this->Mdl_project->getProjects();
+            $this->load->view('users/header/header');
+            $this->load->view('report_stage', $data1);
+            $this->load->view('users/header/footer');
+        }
+    }
+
+
+    public function  report(){
+      if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+
+          if( $this->input->post('reportType')=="stage") {
+              redirect(base_url('project/reportStage'));
+          }
+
+          if( $this->input->post('reportType')=="date") {
+              redirect(base_url('project/reportDate'));
+          }
+      }
+      else {
+          $data1['project'] = $this->Mdl_project->getProjects();
+          $this->load->view('users/header/header');
+          $this->load->view('report', $data1);
+          $this->load->view('users/header/footer');
+      }
 
   }
     public function stage_calls(){
@@ -544,6 +612,9 @@ class Project extends MX_Controller
         print_r($res);
         echo '</pre>'; */
     }
+
+
+
 
 
   	

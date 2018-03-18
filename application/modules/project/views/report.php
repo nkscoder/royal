@@ -14,7 +14,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            General Add Client Elements
+            Report
             <small>Preview</small>
         </h1>
         <ol class="breadcrumb">
@@ -36,20 +36,21 @@
                 <!-- general form elements disabled -->
                 <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Stage Activity</h3>
+                        <h3 class="box-title">Report Type</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                      <div class="row">
-                       <div class="col-sm-6">
+<!--                         <div class="col-sm-4">-->
+<!--                         </div>-->
+                         <div class="col-sm-12">
 
                         <!-- Project employee relation -->
                         <form role="form" action="<?php echo base_url('project/Report'); ?>" method="post">
                             <table id="emprelation" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Select Project</th>
-                                    <th>Select Stage</th>
+                                    <th>Select Seport Type </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,80 +58,25 @@
                                     <td>
                                         <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
 
-                                            <select name="project" id="projectname" required >
+                                            <select name="reportType" id="projectname" required >
                                                 <option value="">Select Project</option>
-                                                <?php foreach ($project as $row){?>
-                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-                                                <?php }?>
-                                            </select>
-                                            <input type="hidden" name="date" value="">
+                                                <option value="stage">Stage type</option>
+                                                <option value="date">Date Type</option>
 
-                                        </div>
-                                    </td>
 
-                                    <td>
-                                        <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                            <select name="stage" id="stage-options" required>
-                                                <option value="">Select Stage</option>
 
                                             </select>
 
                                         </div>
                                     </td>
+
+
                                 </tr>
                                 </tbody>
                             </table>
                             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                         </form>
                         <!-- Project employee relation End -->
-
-                     </div>
-                     <div class="col-sm-6">
-
-
-
-                         <form role="form" action="<?php echo base_url('project/reoprt'); ?>" method="post">
-                             <table id="emprelation" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
-                                 <thead>
-                                 <tr>
-                                     <th>Select Project</th>
-                                     <th>Select Date</th>
-                                 </tr>
-                                 </thead>
-                                 <tbody>
-                                 <tr>
-                                     <td>
-                                         <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-
-                                             <select name="project" id="projectnames" required >
-                                                 <option value="">Select Project</option>
-                                                 <?php foreach ($project as $row){?>
-                                                     <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-                                                 <?php }?>
-                                             </select>
-                                         </div>
-                                     </td>
-                                     <!--                                    <td>-->
-                                     <!--                                        <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8" id="stage-options">-->
-                                     <!--                                        </div>-->
-                                     <!--                                    </td>-->
-                                     <td>
-                                         <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                             <select name="projectdate" id="stage-options" required>
-                                                 <option value="">Select Stage</option>
-
-                                             </select>
-
-                                         </div>
-                                     </td>
-                                 </tr>
-                                 </tbody>
-                             </table>
-                             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                         </form>
-
-
-
 
                      </div>
 
@@ -140,69 +86,6 @@
                     print_r($datapro);
                     echo '</pre>'; */
                     ?>
-                    <table id="example_project_emp" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Activity</th>
-                            <th>Status</th>
-                            <th>Remarks</th>
-                            <th>Photo</th>
-                            <th>Date</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Activity</th>
-                            <th>Status</th>
-                            <th>Remarks</th>
-                            <th>Photo</th>
-                            <th>Date</th>
-
-
-                        </tr>
-                        </tfoot>
-
-                        <tbody>
-                        <?php
-                        //                         print_r($projectdata);
-                        $i=1;
-                        foreach ($projectdata as $pro){
-
-
-                            ?>
-                            <tr>
-
-                                <td>
-                                    <?php echo $i; $i=$i+1;?>
-                                </td>
-                                <td>
-                                    <?php echo $pro['name'];?>
-                                </td>
-
-                                <td>
-                                    <?php if ($pro['approved']==1){?>
-                                        Accepted
-                                    <?php }else{?>
-                                        Rejected
-                                    <?php }?>
-                                </td>
-                                <td>
-                                    <?php echo $pro['remarks'];?>
-                                </td>
-                                <td>
-                                    <img src="<?php echo base_url($pro['image_url']);?>" height="100" width="100">
-                                </td>
-                                <td>
-                                    <?php echo $pro['datetime'];?>
-                                </td>
-
-
-                            </tr>
-                        <?php }?>
-                        </tbody>
-                    </table>
 
 
                 </div>
