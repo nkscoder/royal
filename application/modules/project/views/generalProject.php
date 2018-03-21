@@ -48,6 +48,7 @@
                                 <thead>
                                 <tr>
                                     <th>Select Project</th>
+                                    <th> Select Employee</th>
                                     <th>Select Date</th>
                                 </tr>
                                 </thead>
@@ -65,10 +66,14 @@
 
                                         </div>
                                     </td>
-<!--                                    <td>-->
-<!--                                        <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8" id="stage-options">-->
-<!--                                        </div>-->
-<!--                                    </td>-->
+                                    <td>
+                                        <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8"  >
+                                            <select name="project" id="employee_id" required>
+                                                <option value="">Select Project</option>
+
+                                            </select>
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
                                             <select name="projectdate" id="date" required>
@@ -185,17 +190,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
-        $("#projectname").change(function(){
-            var projectid = $("#projectname").val();
+        $("#project").change(function(){
+            var projectid = $("#project").val();
             //alert(projectid);
             $.ajax({
-                url: "<?php echo base_url('/project/stage_call');?>",
+                url: "<?php echo base_url('/project/get_employee');?>",
                 type:"POST",
                 dataType:"html",
                 data:{projectid : projectid},
                 success : function(stgdata){
                     //alert(stgdata);
-                    $("#stage-options").html(stgdata);
+                    $("#employee_id").html(stgdata);
                 }
             });
         });

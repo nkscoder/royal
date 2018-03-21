@@ -752,9 +752,9 @@ public function createStageActEmp($stage,$emp){
 //        echo $project;
         $this->db->from('inspection_report');
         $this->db->join('stage', 'inspection_report.stage_id = stage.id');
-        $this->db->join('stage_activity_mapping', 'stage.id = stage_activity_mapping.project_stage_map_id');
-//        $this->db->join('activity', 'stage_activity_mapping.activity_id = activity.id');
-//        $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id');
+//        $this->db->join('stage_activity_mapping', 'stage.id = stage_activity_mapping.project_stage_map_id');
+        $this->db->join('activity', 'inspection_report.activity_id = activity.id');
+        $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
 
 
 
@@ -766,7 +766,57 @@ public function createStageActEmp($stage,$emp){
         return $query;
 
     }
+public function getProjectsReportDate($project,$date){
+    $this->db->select('*');
+
+
+    if($date)
+    {
+//        $this->db->where('stage_id',$stage);
+        $this->db->like('datetime', $date);
+
+
+    }
+    $this->db->where('project_id',$project);
+
+//        echo $project;
+    $this->db->from('inspection_report');
+    $this->db->join('stage', 'inspection_report.stage_id = stage.id');
+//        $this->db->join('stage_activity_mapping', 'stage.id = stage_activity_mapping.project_stage_map_id');
+    $this->db->join('activity', 'inspection_report.activity_id = activity.id');
+    $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
 
 
 
+
+    $query = $this->db->get()->result_array();
+//        echo $this->db->last_query();
+//        die;
+
+    return $query;
+
+
+}
+
+public function getProjectsDate(){
+
+    return $this->db->select('id,datetime')->from('inspection_report')->get()->result_array();
+
+}
+public function getProjectEmployee($projectid){
+        $this->db->select('*');
+        $this->db->from('project_to_employee_mapping');
+        $this->db->join('users', 'project_to_employee_mapping.emp_id = users.id');
+
+//    $this->db->where('project_id',$projectid);
+//        $this->db->where('role',"employee");
+        $query = $this->db->get()->result_array();
+//        echo "<pre>";
+//        print_r($query); die;
+        return  $query;
+
+
+
+
+    }
 }

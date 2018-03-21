@@ -451,8 +451,14 @@ class Project extends MX_Controller
         $this->load->view('users/header/footer');
     }
 
+
   public function generalProject(){
       if (islogin()) {
+
+          $data['project']=$this->Mdl_project->getProjectAndDate();
+          $data['employee']=$this->Mdl_project->getProjectEmployee();
+          $data['date'] = $this->Mdl_project->getreportDate();
+
           if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
               $project = $this->input->post('project');
               $date = $this->input->post('projectdate');
@@ -462,22 +468,19 @@ class Project extends MX_Controller
 
               $data['projectdata']=$this->Mdl_project->getProjectAndByDate($project,$date);
                             print_r($data['projectdata']); die;
-              $data1['project']=$this->Mdl_project->getProjectAndDate();
+              $data['project']=$this->Mdl_project->getProjectAndDate();
 
               $this->load->view('users/header/header',$data1);
               $this->load->view('generalProject',$data);
               $this->load->view('users/header/footer');
           }
           else{
-              $data1['project']=$this->Mdl_project->getProjectAndDate();
-//              $data1['project']=$this->Mdl_project->getProjectAndDate();
-              $result['date'] = $this->Mdl_project->getreportDate();
 //              print_r($result['date'] );
 //              print_r($result['stage'] );
 //              die;
 //              print_r($data['project'])
-              $this->load->view('users/header/header',$result);
-              $this->load->view('generalProject',$data1);
+              $this->load->view('users/header/header');
+              $this->load->view('generalProject',$data);
               $this->load->view('users/header/footer');
           }
 
@@ -552,11 +555,23 @@ class Project extends MX_Controller
       if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
 
+          $project = $this->input->post('project');
+          $date = $this->input->post('date');
+          $data['report'] = $this->Mdl_project->getProjectsReportDate($project,$date);
+          $data['project'] = $this->Mdl_project->getProjects();
+          $data['date'] = $this->Mdl_project->getProjectsDate();
+
+          $this->load->view('users/header/header');
+          $this->load->view('report_date', $data);
+          $this->load->view('users/header/footer');
+
       }
       else {
-          $data1['project'] = $this->Mdl_project->getProjects();
+          $data['project'] = $this->Mdl_project->getProjects();
+          $data['date'] = $this->Mdl_project->getProjectsDate();
+
           $this->load->view('users/header/header');
-          $this->load->view('report_date', $data1);
+          $this->load->view('report_date', $data);
           $this->load->view('users/header/footer');
       }
   }
@@ -566,9 +581,13 @@ class Project extends MX_Controller
 
                    $project = $this->input->post('project');
                   $stage = $this->input->post('stage');
-                  $data1['project']=$this->Mdl_project->getreportStage($project,$stage);
-                  echo "<pre>";
-                  print_r($data1['project']);die;
+                  $data['report']=$this->Mdl_project->getreportStage($project,$stage);
+//                  echo "<pre>";
+//                  print_r($data1['project']);die;
+                $data['project'] = $this->Mdl_project->getProjects();
+                $this->load->view('users/header/header');
+                $this->load->view('report_stage', $data);
+                $this->load->view('users/header/footer');
 
 
         }
@@ -616,6 +635,17 @@ class Project extends MX_Controller
 
 
 
+
+    public function get_employee(){
+        $projectid = $this->input->post('projectid');
+        $res_stg = $this->Mdl_project->getProjectEmployee($projectid);
+        $stg_return='<option value="">Select Employee </option>';
+        foreach($res_stg as $stage_data){
+            $stg_return .= '<option   value="'.$stage_data['id'].'">'.$stage_data['fname'].'</option>';
+        }
+        echo $stg_return;
+
+    }
 
   	
 }

@@ -45,7 +45,7 @@
 
 
 
-                                <form role="form" action="<?php echo base_url('project/reoprt'); ?>" method="post">
+                                <form role="form" action="<?php echo base_url('project/reportDate'); ?>" method="post">
                                     <table id="emprelation" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
                                         <thead>
                                         <tr>
@@ -72,9 +72,11 @@
                                             <!--                                    </td>-->
                                             <td>
                                                 <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                                    <select name="projectdate" id="stage-options" required>
-                                                        <option value="">Select Stage</option>
-
+                                                    <select name="date" id="stage-option" required>
+                                                        <option value="">Select Date</option>
+                                                        <?php foreach ($date as $row){?>
+                                                            <option value="<?php echo $row['datetime'];?>"><?php echo $row['datetime'];?></option>
+                                                        <?php }?>
                                                     </select>
 
                                                 </div>
@@ -124,7 +126,7 @@
                             <?php
                             //                         print_r($projectdata);
                             $i=1;
-                            foreach ($projectdata as $pro){
+                            foreach ($report as $pro){
 
 
                                 ?>
@@ -209,7 +211,7 @@
 
         $('#stage').empty();
         $.ajax({
-            'url': "<?php echo base_url('/project/getstage');?>",
+            'url': "<?php echo base_url('/project/getdate');?>",
             'type':"POST",
             'dataType':"json",
             data:dd,

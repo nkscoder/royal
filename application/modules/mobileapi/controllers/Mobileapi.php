@@ -316,7 +316,7 @@ class Mobileapi extends CI_Controller
             if (strcmp($imageUrl, $item['imageUrl']) !== 0) {
                 $imageUrl = $item['imageUrl'];
                 array_push($response[$stageIndex]['activity'][$activityIndex]['imageUrls'], $imageUrl);
-            }
+              }
         }
 
         $this->output

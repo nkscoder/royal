@@ -121,7 +121,7 @@
                             <?php
                             //                         print_r($projectdata);
                             $i=1;
-                            foreach ($projectdata as $pro){
+                            foreach ($report as $pro){
 
 
                                 ?>
