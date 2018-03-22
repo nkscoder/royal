@@ -462,15 +462,18 @@ class Project extends MX_Controller
           if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
               $project = $this->input->post('project');
               $date = $this->input->post('projectdate');
+              $employee = $this->input->post('employee');
+
+
 //              echo $date;
 //              echo $project;
 
 
-              $data['projectdata']=$this->Mdl_project->getProjectAndByDate($project,$date);
-                            print_r($data['projectdata']); die;
-              $data['project']=$this->Mdl_project->getProjectAndDate();
+              $data['projectdata']=$this->Mdl_project->getProjectAndByDate($project,$date,$employee);
+//                            print_r($data['projectdata']); die;
+//              $data['project']=$this->Mdl_project->getProjectAndDate();
 
-              $this->load->view('users/header/header',$data1);
+              $this->load->view('users/header/header');
               $this->load->view('generalProject',$data);
               $this->load->view('users/header/footer');
           }

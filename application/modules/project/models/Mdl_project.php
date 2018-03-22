@@ -678,18 +678,45 @@ public function createStageActEmp($stage,$emp){
 
     }
 
-    public function getProjectAndByDate($project,$date){
+    public function getProjectAndByDate($project,$date,$employee){
+
+            $this->db->select('*');
+            if ($project and $date and $employee) {
+                $this->db->where('project_id', $project);
+                $this->db->where('user_id', $employee);
+                $this->db->like('datetime', $date);
+            }
+
+        if ($project and $employee) {
+            $this->db->where('project_id', $project);
+            $this->db->where('user_id', $employee);
+            $this->db->like('datetime', $date);
+        }
+            if(empty($project) and empty($date) and $employee){
+
+                $this->db->where('user_id', $employee);
+            }
+
+        if(empty($project) and empty($employee) and $date){
+
+            $this->db->where('datetime', $date);
+        }
+        if(empty($date) and empty($employee) and $project){
+
+            $this->db->where('project_id', $project);
+        }
+        $this->db->from('general_reports');
+
+        $this->db->join('project','general_reports.project_id = project.id');
 
 
 
-            $this->db->where('project_id',$project);
-            $this->db->where('datetime',$date);
+        return $this->db->get()->result_array();
 
-         $data= $this->db->get('general_reports')->result_array();
-        $q=$this->db->last_query();
-        echo $q;
+//        $q=$this->db->last_query();
+//        echo $q;
 
-        print_r($data); die;
+//        print_r($data); die;
 
 //
 //

@@ -57,7 +57,7 @@
                                     <td>
                                         <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
 
-                                            <select name="project" id="project" required>
+                                            <select name="project" id="project" >
                                                 <option value="">Select Project</option>
                                                 <?php foreach ($project as $row){?>
                                                     <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
@@ -68,15 +68,15 @@
                                     </td>
                                     <td>
                                         <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8"  >
-                                            <select name="project" id="employee_id" required>
-                                                <option value="">Select Project</option>
+                                            <select name="employee" id="employee_id" >
+                                                <option value="">Select Employee</option>
 
                                             </select>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                            <select name="projectdate" id="date" required>
+                                            <select name="projectdate" id="date" >
                                                 <option value="">Select Date</option>
                                                 <?php foreach ($date as $emp){?>
                                                     <option value="<?php echo $emp['datetime'];?>"><?php echo $emp['datetime'];?></option>
