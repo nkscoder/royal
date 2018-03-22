@@ -595,9 +595,11 @@ class Project extends MX_Controller
 
         }
         else {
-            $data1['project'] = $this->Mdl_project->getProjects();
+            $data['report']=$this->Mdl_project->getreportStageAll();
+
+            $data['project'] = $this->Mdl_project->getProjects();
             $this->load->view('users/header/header');
-            $this->load->view('report_stage', $data1);
+            $this->load->view('report_stage', $data);
             $this->load->view('users/header/footer');
         }
     }

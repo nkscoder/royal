@@ -102,11 +102,9 @@
                         <tr>
                             <th>S.No</th>
                             <th>Project Name</th>
-                            <th>Area</th>
-                            <th>Plot Number</th>
-                            <th>Location</th>
-                            <th>Details</th>
-                            <th>Status</th>
+                            <th>Employee</th>
+                            <th>Report Name</th>
+                            <th>Description</th>
                             <th>Created</th>
                         </tr>
                         </thead>
@@ -114,18 +112,16 @@
                         <tr>
                             <th>S.No</th>
                             <th>Project Name</th>
-                            <th>Area</th>
-                            <th>Plot Number</th>
-                            <th>Location</th>
-                            <th>Details</th>
-                            <th>Status</th>
+                            <th>Employee</th>
+                            <th>Report Name</th>
+                            <th>Description</th>
                             <th>Created</th>
-
                         </tr>
                         </tfoot>
 
                         <tbody>
                         <?php
+//                        echo "<pre>";
 //                         print_r($projectdata);
                         $i=1;
                         foreach ($projectdata as $pro){
@@ -142,23 +138,18 @@
                                 </td>
 
                                 <td>
-                                    <?php echo $pro['area'];?>
+                                    <?php echo $pro['fname'].' '.$pro['sname'];?>
                                 </td>
                                 <td>
-                                    <?php echo $pro['plotNumber'];?>
+                                    <?php echo $pro['report_name'];?>
                                 </td>
                                 <td>
-                                    <?php echo $pro['location'];?>
+                                    <?php echo $pro['description'];?>
                                 </td>
                                 <td>
-                                    <?php echo $pro['details'];?>
+                                    <?php echo $pro['datetime'];?>
                                 </td>
-                                <td>
-                                    <?php echo $pro['status'];?>
-                                </td>
-                                <td>
-                                    <?php echo $pro['created_on'];?>
-                                </td>
+
 
                             </tr>
                          <?php }?>

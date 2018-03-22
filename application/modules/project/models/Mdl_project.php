@@ -708,6 +708,8 @@ public function createStageActEmp($stage,$emp){
         $this->db->from('general_reports');
 
         $this->db->join('project','general_reports.project_id = project.id');
+        $this->db->join('users','general_reports.user_id = users.id');
+
 
 
 
@@ -846,4 +848,18 @@ public function getProjectEmployee($projectid){
 
 
     }
+
+   public function getreportStageAll(){
+       $this->db->select('*');
+       $this->db->from('inspection_report');
+       $this->db->join('stage', 'inspection_report.stage_id = stage.id');
+       $this->db->join('activity', 'inspection_report.activity_id = activity.id');
+       $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
+       $query = $this->db->get()->result_array();
+       return $query;
+
+
+   }
 }
+
+
