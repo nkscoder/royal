@@ -33,7 +33,10 @@ function hasPermission($provided_permission){
 function isAdmin(){
     $ci=CI::get_instance();
     $role=$ci->session->userdata('user_data');
-    $role=$role['user_role_name'];
+
+//    $role[0]['role'])
+
+    $role=$role[0]['role'];
     if(checkSession()){
     if(strtolower($role)=='admin'){
         return true;

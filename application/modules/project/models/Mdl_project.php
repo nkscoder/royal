@@ -768,61 +768,135 @@ public function createStageActEmp($stage,$emp){
    }
 
     public function getreportStage($project,$stage){
-        $this->db->select('*');
+//        $this->db->select('*');
+//
+//
+//        if($stage)
+//        {
+//            $this->db->where('stage_id',$stage);
+//
+//        }
+//
+//        $this->db->where('project_id',$project);
+//
+//
+//
+////        echo $project;
+//        $this->db->from('inspection_report');
+//        $this->db->join('stage', 'inspection_report.stage_id = stage.id');
+////        $this->db->join('stage_activity_mapping', 'stage.id = stage_activity_mapping.project_stage_map_id');
+//        $this->db->join('activity', 'inspection_report.activity_id = activity.id');
+//        $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
+//
+//
+//
+//
+//        $query = $this->db->get()->result_array();
+////        echo $this->db->last_query();
+////        die;
 
-
+        $this->db->select("project.id as projectId,
+                                project.name as projectName,
+                                stage.id as stageId,
+                                stage.name as stageName,
+                                activity.id as activityId,
+                                activity.name as activityName
+                                ,
+                                date_format(datetime, '%D %M %Y %h:%i %p') as datetime,
+                                inre.id as reportId,
+                                remarks,
+                                replace(iri.image_url, '/home/bucontec/public_html', 'http://bucontechnology.in') as imageUrl,
+                                document_number as docNum,
+                                approved,
+                                "
+        );
+        $this->db->from("inspection_report as inre");
+        $this->db->join('inspection_report_images as iri', 'iri.inspection_report_id = inre.id', 'left');
+        $this->db->join('project', 'project.id = inre.project_id');
+        $this->db->join('stage', 'stage.id = inre.stage_id');
+        $this->db->join('activity', 'activity.id = inre.activity_id');
         if($stage)
         {
-            $this->db->where('stage_id',$stage);
+//        $this->db->where('stage_id',$stage);
+            $this->db->like('inre.stage_id', $stage);
+
 
         }
-        $this->db->where('project_id',$project);
+        $this->db->where('inre.project_id', $project);
 
-//        echo $project;
-        $this->db->from('inspection_report');
-        $this->db->join('stage', 'inspection_report.stage_id = stage.id');
-//        $this->db->join('stage_activity_mapping', 'stage.id = stage_activity_mapping.project_stage_map_id');
-        $this->db->join('activity', 'inspection_report.activity_id = activity.id');
-        $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
+        //->where('date(datetime)', $date)
+//               ->where('inre.user_id', $userId)
+        $this->db ->order_by('project.id, stage.id, activity.id, datetime desc');
+        $data= $this->db->get()->result_array();
+//        $data=$this->db->result_array();
 
-
-
-
-        $query = $this->db->get()->result_array();
-//        echo $this->db->last_query();
-//        die;
-
-        return $query;
+        return $data;
+//        return $query;
 
     }
 public function getProjectsReportDate($project,$date){
-    $this->db->select('*');
+//    $this->db->select('*');
 
 
-    if($date)
-    {
-//        $this->db->where('stage_id',$stage);
-        $this->db->like('datetime', $date);
-
-
-    }
-    $this->db->where('project_id',$project);
+//    if($date)
+//    {
+////        $this->db->where('stage_id',$stage);
+//        $this->db->like('datetime', $date);
+//
+//
+//    }
+//    $this->db->where('project_id',$project);
 
 //        echo $project;
-    $this->db->from('inspection_report');
-    $this->db->join('stage', 'inspection_report.stage_id = stage.id');
+//    $this->db->from('inspection_report');
+//    $this->db->join('stage', 'inspection_report.stage_id = stage.id');
 //        $this->db->join('stage_activity_mapping', 'stage.id = stage_activity_mapping.project_stage_map_id');
-    $this->db->join('activity', 'inspection_report.activity_id = activity.id');
-    $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
+//    $this->db->join('activity', 'inspection_report.activity_id = activity.id');
+//    $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
 
 
 
 
-    $query = $this->db->get()->result_array();
+//    $query = $this->db->get()->result_array();
 //        echo $this->db->last_query();
 //        die;
 
-    return $query;
+     $this->db->select("project.id as projectId,
+                                project.name as projectName,
+                                stage.id as stageId,
+                                stage.name as stageName,
+                                activity.id as activityId,
+                                activity.name as activityName
+                                ,
+                                date_format(datetime, '%D %M %Y %h:%i %p') as datetime,
+                                inre.id as reportId,
+                                remarks,
+                                replace(iri.image_url, '/home/bucontec/public_html', 'http://bucontechnology.in') as imageUrl,
+                                document_number as docNum,
+                                approved,
+                                "
+        );
+         $this->db->from("inspection_report as inre");
+        $this->db->join('inspection_report_images as iri', 'iri.inspection_report_id = inre.id', 'left');
+        $this->db->join('project', 'project.id = inre.project_id');
+        $this->db->join('stage', 'stage.id = inre.stage_id');
+        $this->db->join('activity', 'activity.id = inre.activity_id');
+    if($date)
+    {
+//        $this->db->where('stage_id',$stage);
+        $this->db->like('inre.datetime', $date);
+
+
+    }
+       $this->db->where('inre.project_id', $project);
+
+        //->where('date(datetime)', $date)
+//               ->where('inre.user_id', $userId)
+         $this->db ->order_by('project.id, stage.id, activity.id, datetime desc');
+         $data=$this->db->get()->result_array();
+//         $this->db->result_array();
+
+    return $data;
 
 
 }
@@ -850,13 +924,60 @@ public function getProjectEmployee($projectid){
     }
 
    public function getreportStageAll(){
-       $this->db->select('*');
-       $this->db->from('inspection_report');
-       $this->db->join('stage', 'inspection_report.stage_id = stage.id');
-       $this->db->join('activity', 'inspection_report.activity_id = activity.id');
-       $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
-       $query = $this->db->get()->result_array();
-       return $query;
+       if($this->session->userdata['user_data'][0]['role']=="admin") {
+//
+//           $this->db->select('*');
+//           $this->db->from('inspection_report'); F Y h:i:s A
+//           $this->db->join('stage', 'inspection_report.stage_id = stage.id');
+//           $this->db->join('activity', 'inspection_report.activity_id = activity.id');
+//           $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id', 'left');
+//           $query = $this->db->get()->result_array();
+           $data = $this->db
+               ->select("project.id as projectId,
+                                project.name as projectName,
+                                stage.id as stageId,
+                                stage.name as stageName,
+                                activity.id as activityId,
+                                activity.name as activityName
+                                ,
+                                date_format(datetime, '%D %M %Y %h:%i %p') as datetime,
+                                inre.id as reportId,
+                                remarks,
+                                replace(iri.image_url, '/home/bucontec/public_html', 'http://bucontechnology.in') as imageUrl,
+                                document_number as docNum,
+                                approved,
+                                "
+                                )
+               ->from("inspection_report as inre")
+               ->join('inspection_report_images as iri', 'iri.inspection_report_id = inre.id', 'left')
+               ->join('project', 'project.id = inre.project_id')
+               ->join('stage', 'stage.id = inre.stage_id')
+               ->join('activity', 'activity.id = inre.activity_id')
+               //->where('inre.project_id', $projectId)
+               //->where('date(datetime)', $date)
+//               ->where('inre.user_id', $userId)
+               ->order_by('project.id, stage.id, activity.id, datetime desc')
+               ->get()
+               ->result_array();
+           //echo $this->db->last_query();
+//           echo "<pre>";
+//           print_r($data); die;
+           return $data;
+
+//           return $query;
+       }
+
+//       if($this->session->userdata['user_data'][0]['role']!="admin"){
+//           $this->db->select('*');
+//           $this->db->where('user_id',$this->session->userdata['user_data'][0]['id']);
+//           $this->db->from('inspection_report');
+//
+//           $this->db->join('stage', 'inspection_report.stage_id = stage.id');
+//           $this->db->join('activity', 'inspection_report.activity_id = activity.id');
+//           $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id', 'left');
+//           $query = $this->db->get()->result_array();
+//           return $query;
+//       }
 
 
    }

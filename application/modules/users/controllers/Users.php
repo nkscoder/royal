@@ -145,32 +145,49 @@ class Users extends MX_Controller
 
     public function client()
     {
+        if(isAdmin()) {
 
-        $result['client'] = $this->Mdl_users->getClient('client');
-        $this->load->view('header/header');
-        $this->load->view('client', $result);
-        $this->load->view('header/footer');
+            $result['client'] = $this->Mdl_users->getClient('client');
+            $this->load->view('header/header');
+            $this->load->view('client', $result);
+            $this->load->view('header/footer');
+        }else{
+            setInformUser('error', 'Not Allowed to Access this Page.');
+            redirect(base_url('users/dashboard'));
+
+        }
 
     }
 
     public function contractor()
     {
 
+        if(isAdmin()) {
+
         $result['contractor'] = $this->Mdl_users->getClient('contractor');
         $this->load->view('header/header');
         $this->load->view('contractor', $result);
         $this->load->view('header/footer');
 
+        }else{
+            setInformUser('error', 'Not Allowed to Access this Page.');
+            redirect(base_url('users/dashboard'));
+        }
     }
 
     public function employee()
     {
 
+        if(isAdmin()) {
+
         $result['employee'] = $this->Mdl_users->getClient('employee');
         $this->load->view('header/header');
         $this->load->view('employee', $result);
         $this->load->view('header/footer');
-
+            }else{
+        setInformUser('error', 'Not Allowed to Access this Page.');
+        redirect(base_url('users/dashboard'));
+            }
     }
 
     public function profile()

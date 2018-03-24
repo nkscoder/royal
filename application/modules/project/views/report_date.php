@@ -102,6 +102,7 @@
                             <thead>
                             <tr>
                                 <th>S.No</th>
+                                <th>Project</th>
                                 <th>Activity</th>
                                 <th>Status</th>
                                 <th>Remarks</th>
@@ -112,6 +113,8 @@
                             <tfoot>
                             <tr>
                                 <th>S.No</th>
+                                <th>Project</th>
+
                                 <th>Activity</th>
                                 <th>Status</th>
                                 <th>Remarks</th>
@@ -136,7 +139,10 @@
                                         <?php echo $i; $i=$i+1;?>
                                     </td>
                                     <td>
-                                        <?php echo $pro['name'];?>
+                                        <?php echo $pro['projectName'];?>
+                                    </td>
+                                    <td>
+                                        <?php echo $pro['activityName'];?>
                                     </td>
 
                                     <td>
@@ -150,7 +156,7 @@
                                         <?php echo $pro['remarks'];?>
                                     </td>
                                     <td>
-                                        <img src="<?php echo base_url($pro['image_url']);?>" height="100" width="100">
+                                        <img src="<?php echo $pro['imageUrl'];?>" height="100" width="100">
                                     </td>
                                     <td>
                                         <?php echo $pro['datetime'];?>

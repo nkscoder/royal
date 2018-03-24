@@ -21,6 +21,8 @@ class Project extends MX_Controller
 
     public function stage()
     {
+
+        if(isAdmin()) {
         if (islogin()) {
             if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
                 $this->Mdl_project->setProject('stage', $this->input->post('stage'), $this->input->post('role'));
@@ -43,11 +45,17 @@ class Project extends MX_Controller
                 $this->load->view('users/header/footer');
             }
         }
+    }else{
+setInformUser('error', 'Not Allowed to Access this Page.');
+redirect(base_url('users/dashboard'));
+}
     }
 
 
     public function activity()
     {
+
+        if(isAdmin()) {
         if (islogin()) {
             if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
                 if ($this->input->post('role') == 'activity') {
@@ -74,6 +82,10 @@ class Project extends MX_Controller
             redirect(base_url('users'));
         }
 
+        }else{
+            setInformUser('error', 'Not Allowed to Access this Page.');
+            redirect(base_url('users/dashboard'));
+        }
 
     }
 	public function updateProject(){
@@ -98,6 +110,9 @@ class Project extends MX_Controller
 	}
     public function index()
     {
+
+        if(isAdmin()) {
+
         if (islogin()) {
             if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
@@ -123,8 +138,13 @@ class Project extends MX_Controller
         }else{
                 redirect(base_url('users'));
             }
+    }else{
+setInformUser('error', 'Not Allowed to Access this Page.');
+redirect(base_url('users/dashboard'));
+}
 
-    }
+
+}
 
     public function getuser(){
 
@@ -138,7 +158,9 @@ class Project extends MX_Controller
     public function createStage(){
 
         if (islogin()) {
-            if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            if(isAdmin()) {
+
+                if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
               
 //                $this->Mdl_project->setProject('stagemapping', $this->input->post('name'), $this->input->post('area'), $this->input->post('plotNumber'), $this->input->post('location'), $this->input->post('projectDetails'));
@@ -166,6 +188,10 @@ class Project extends MX_Controller
                 $this->load->view('users/header/header');
                 $this->load->view('addstage',$result);
                 $this->load->view('users/header/footer');
+            }
+            }else{
+                setInformUser('error', 'Not Allowed to Access this Page.');
+                redirect(base_url('users/dashboard'));
             }
         }else{
             redirect(base_url('users'));
@@ -199,6 +225,8 @@ class Project extends MX_Controller
 		}
 	}
 	public function stageActivity(){
+
+        if(isAdmin()) {
 		if (islogin()) {
 			if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 					/* $stage = $this->input->post('stage');
@@ -237,6 +265,10 @@ class Project extends MX_Controller
 			}
 		}else{
             redirect(base_url('users'));
+        }
+        }else{
+            setInformUser('error', 'Not Allowed to Access this Page.');
+            redirect(base_url('users/dashboard'));
         }
 	}
 	public function stageEmp(){
@@ -278,6 +310,7 @@ class Project extends MX_Controller
 	}
 	public function viewall(){
 		if (islogin()) {
+            if (isAdmin()) {
 				$result['stage'] = $this->Mdl_project->getStages();
 				$result['activity'] = $this->Mdl_project->getActivity();
 				$result['StageActivity'] = $this->Mdl_project->getStageActivity();
@@ -289,6 +322,10 @@ class Project extends MX_Controller
 				$this->load->view('users/header/header');
 				$this->load->view('viewall',$result);
 				$this->load->view('users/header/footer');
+        }else{
+            setInformUser('error', 'Not Allowed to Access this Page.');
+            redirect(base_url('users/dashboard'));
+        }
 		}else{
             redirect(base_url('users'));
         }
@@ -393,6 +430,10 @@ class Project extends MX_Controller
   }
   public function projectEmployee(){
 	if (islogin()) {
+
+
+        if(isAdmin()) {
+
 		if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 			
 			//$this->Mdl_project->deleteProjectEmployee($this->input->post('employee'));
@@ -430,6 +471,10 @@ class Project extends MX_Controller
 		$this->load->view('projecteemp',$result);
 		$this->load->view('users/header/footer');
 		}
+    }else{
+        setInformUser('error', 'Not Allowed to Access this Page.');
+        redirect(base_url('users/dashboard'));
+    }
 	}else{
         redirect(base_url('users'));
     }
@@ -572,6 +617,7 @@ class Project extends MX_Controller
       else {
           $data['project'] = $this->Mdl_project->getProjects();
           $data['date'] = $this->Mdl_project->getProjectsDate();
+          $data['report']=$this->Mdl_project->getreportStageAll();
 
           $this->load->view('users/header/header');
           $this->load->view('report_date', $data);
@@ -580,6 +626,7 @@ class Project extends MX_Controller
   }
 
     public function reportStage(){
+
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
                    $project = $this->input->post('project');

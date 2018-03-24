@@ -43,7 +43,9 @@
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
+                    <?php if($this->session->userdata['user_data'][0]['role']=="admin"){  ?>
                     <a href="<?php echo base_url('users/client'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <?php } ?>
                 </div>
             </div>
             <!-- ./col -->
@@ -58,7 +60,10 @@
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
+                    <?php if($this->session->userdata['user_data'][0]['role']=="admin"){  ?>
+
                     <a href="<?php echo base_url('users/contractor'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                     <?php } ?>
                 </div>
             </div>
             <!-- ./col -->
@@ -73,7 +78,10 @@
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
+                    <?php if($this->session->userdata['user_data'][0]['role']=="admin"){  ?>
+
                     <a href="<?php echo base_url('project/'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <?php } ?>
                 </div>
             </div>
             <!-- ./col -->
@@ -88,7 +96,10 @@
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
+                    <?php if($this->session->userdata['user_data'][0]['role']=="admin"){  ?>
+
                     <a href="<?php base_url();?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <?php  }?>
                 </div>
             </div>
             <!-- ./col -->

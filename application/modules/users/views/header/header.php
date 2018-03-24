@@ -181,6 +181,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
+                <?php if($this->session->userdata['user_data'][0]['role']=="admin"){  ?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>User Master</span>
@@ -236,7 +237,7 @@
 
                 </ul>
 				</li>
-
+            <?php  }?>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-book"></i>
                         <span>Project Report</span>
