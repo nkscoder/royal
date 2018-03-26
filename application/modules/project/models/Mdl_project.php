@@ -767,7 +767,7 @@ public function createStageActEmp($stage,$emp){
 
    }
 
-    public function getreportStage($project,$stage){
+    public function getreportStage($project,$stage,$date){
 //        $this->db->select('*');
 //
 //
@@ -818,7 +818,20 @@ public function createStageActEmp($stage,$emp){
         if($stage)
         {
 //        $this->db->where('stage_id',$stage);
-            $this->db->like('inre.stage_id', $stage);
+            $this->db->where('inre.stage_id', $stage);
+
+
+        }
+
+        if(!empty($date))
+        {
+//        $this->db->where('stage_id',$stage);
+//            $this->db->like('datetime',timestampdiff($date) );
+//        $this->db->where('date(inre.datetime)', $date);
+//        $this->db->where("date(inre.datetime,'%d-%m-%Y') <= $date",NULL,FALSE);
+            $this->db->where('date(inre.datetime)',  $date);
+
+
 
 
         }
@@ -826,9 +839,14 @@ public function createStageActEmp($stage,$emp){
 
         //->where('date(datetime)', $date)
 //               ->where('inre.user_id', $userId)
-        $this->db ->order_by('project.id, stage.id, activity.id, datetime desc');
+        $this->db ->order_by('datetime desc');
         $data= $this->db->get()->result_array();
 //        $data=$this->db->result_array();
+//        echo $this->db->last_query();
+
+//        echo $date;
+//        print_r($data);
+//        die;
 
         return $data;
 //        return $query;
@@ -903,7 +921,10 @@ public function getProjectsReportDate($project,$date){
 
 public function getProjectsDate(){
 
-    return $this->db->select('id,datetime')->from('inspection_report')->get()->result_array();
+     $this->db->select('id,datetime');
+    $this->db ->from('inspection_report');
+    $this->db ->order_by('datetime ASC');
+    return $this->db->get()->result_array();
 
 }
 public function getProjectEmployee($projectid){
@@ -966,18 +987,41 @@ public function getProjectEmployee($projectid){
 
 //           return $query;
        }
-
-//       if($this->session->userdata['user_data'][0]['role']!="admin"){
-//           $this->db->select('*');
-//           $this->db->where('user_id',$this->session->userdata['user_data'][0]['id']);
-//           $this->db->from('inspection_report');
+       else{
+           $data = $this->db
+               ->select("project.id as projectId,
+                                project.name as projectName,
+                                stage.id as stageId,
+                                stage.name as stageName,
+                                activity.id as activityId,
+                                activity.name as activityName
+                                ,
+                                date_format(datetime, '%D %M %Y %h:%i %p') as datetime,
+                                inre.id as reportId,
+                                remarks,
+                                replace(iri.image_url, '/home/bucontec/public_html', 'http://bucontechnology.in') as imageUrl,
+                                document_number as docNum,
+                                approved,
+                                "
+               )
+               ->from("inspection_report as inre")
+               ->join('inspection_report_images as iri', 'iri.inspection_report_id = inre.id', 'left')
+               ->join('project', 'project.id = inre.project_id')
+               ->join('stage', 'stage.id = inre.stage_id')
+               ->join('activity', 'activity.id = inre.activity_id')
+               ->where('inre.user_id', $this->session->userdata['user_data'][0]['id'])
+               //->where('date(datetime)', $date)
+//               ->where('inre.user_id', $userId)
+               ->order_by('project.id, stage.id, activity.id, datetime desc')
+               ->get()
+               ->result_array();
+           //echo $this->db->last_query();
+//           echo "nitesh";
+//           echo "<pre>";
 //
-//           $this->db->join('stage', 'inspection_report.stage_id = stage.id');
-//           $this->db->join('activity', 'inspection_report.activity_id = activity.id');
-//           $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id', 'left');
-//           $query = $this->db->get()->result_array();
-//           return $query;
-//       }
+//           print_r($this->session->userdata['user_data'][0]['id']); die;
+           return $data;
+       }
 
 
    }

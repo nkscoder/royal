@@ -247,7 +247,7 @@
                     <ul class="treeview-menu">
                         <li><a href="<?php echo base_url('project/generalProject'); ?>"><i
                                         class="fa fa-circle-o"></i>General Project Table </a></li>
-                        <li><a href="<?php echo base_url('project/report'); ?>"><i
+                        <li><a href="<?php echo base_url('project/reportStage'); ?>"><i
                                         class="fa fa-circle-o"></i>Report Inspection</a></li>
 
                     </ul>

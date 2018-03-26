@@ -626,15 +626,19 @@ redirect(base_url('users/dashboard'));
   }
 
     public function reportStage(){
+        $data['date'] = $this->Mdl_project->getProjectsDate();
+        $data['project'] = $this->Mdl_project->getProjects();
 
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
                    $project = $this->input->post('project');
                   $stage = $this->input->post('stage');
-                  $data['report']=$this->Mdl_project->getreportStage($project,$stage);
+                   $date = $this->input->post('date');
+
+            $data['report']=$this->Mdl_project->getreportStage($project,$stage,$date);
 //                  echo "<pre>";
 //                  print_r($data1['project']);die;
-                $data['project'] = $this->Mdl_project->getProjects();
+//                $data['project'] = $this->Mdl_project->getProjects();
                 $this->load->view('users/header/header');
                 $this->load->view('report_stage', $data);
                 $this->load->view('users/header/footer');
@@ -644,7 +648,6 @@ redirect(base_url('users/dashboard'));
         else {
             $data['report']=$this->Mdl_project->getreportStageAll();
 
-            $data['project'] = $this->Mdl_project->getProjects();
             $this->load->view('users/header/header');
             $this->load->view('report_stage', $data);
             $this->load->view('users/header/footer');

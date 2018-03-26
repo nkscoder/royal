@@ -51,6 +51,8 @@
                                         <tr>
                                             <th>Select Project</th>
                                             <th>Select Stage</th>
+                                            <th>Select Date</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -71,13 +73,49 @@
 
                                             <td>
                                                 <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                                    <select name="stage" id="stage-options" required>
+                                                    <select name="stage" id="stage-options" >
                                                         <option value="">Select Stage</option>
 
                                                     </select>
 
                                                 </div>
                                             </td>
+
+                                            <td>
+
+<!--                                                --><?php //$d1='';
+//                                                foreach ($date as $row){
+//                                                    $d=strtotime( $row['datetime']);
+//                                                    $datenew=date("d/m/Y", $d);
+//                                                    if($d1!=$datenew){
+//
+//
+//                                                        $d1=$datenew;
+//                                                        echo $d1;echo "<br>";
+////                                                        echo $datenew ;
+//                                                     }} die;?>
+
+                                                <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
+                                                    <select name="date" id="stage-option" >
+                                                        <option value="">Select Date</option>
+                                                        <?php $d1='';
+                                                            foreach ($date as $row){
+                                                            $d=strtotime( $row['datetime']);
+                                                                 $datenew=date("d/m/Y", $d);
+                                                                $datenew1=date("Y/m/d", $d);
+                                                              if($d1!=$datenew){
+                                                                  $d1=$datenew;
+
+                                                            ?>
+                                                            <option value="<?php echo $datenew1;?>"><?php echo $datenew ?></option>
+                                                        <?php }
+
+                                                                }?>
+                                                    </select>
+
+                                                </div>
+                                            </td>
+
                                         </tr>
                                         </tbody>
                                     </table>
@@ -153,7 +191,7 @@
                                         <?php echo $pro['remarks'];?>
                                     </td>
                                     <td>
-                                        <img src="<?php echo $pro['imageUrl'];?>" height="100" width="100">
+                                       <a target="_blank" href="<?php echo $pro['imageUrl'];  ?>"> <img src="<?php echo $pro['imageUrl'];?>" height="100" width="100"></a>
                                     </td>
                                     <td>
                                         <?php echo $pro['datetime'];?>
