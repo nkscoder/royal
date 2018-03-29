@@ -15,7 +15,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Report
+            Report Inspection
             <small>Preview</small>
         </h1>
         <ol class="breadcrumb">
@@ -37,7 +37,7 @@
                 <!-- general form elements disabled -->
                 <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Report Stage </h3>
+                        <h3 class="box-title">Report Inspection </h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -60,7 +60,7 @@
                                             <td>
                                                 <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
 
-                                                    <select name="project" id="projectname" required >
+                                                    <select name="project" id="projectname">
                                                         <option value="">Select Project</option>
                                                         <?php foreach ($project as $row){?>
                                                             <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>

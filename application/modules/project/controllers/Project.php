@@ -626,6 +626,7 @@ redirect(base_url('users/dashboard'));
   }
 
     public function reportStage(){
+        if (islogin()) {
         $data['date'] = $this->Mdl_project->getProjectsDate();
         $data['project'] = $this->Mdl_project->getProjects();
 
@@ -647,11 +648,16 @@ redirect(base_url('users/dashboard'));
         }
         else {
             $data['report']=$this->Mdl_project->getreportStageAll();
-
+//            echo $data['report']; die;
             $this->load->view('users/header/header');
             $this->load->view('report_stage', $data);
             $this->load->view('users/header/footer');
         }
+
+        }else{
+            redirect(base_url('users'));
+        }
+
     }
 
 

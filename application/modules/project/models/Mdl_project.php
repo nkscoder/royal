@@ -768,32 +768,7 @@ public function createStageActEmp($stage,$emp){
    }
 
     public function getreportStage($project,$stage,$date){
-//        $this->db->select('*');
-//
-//
-//        if($stage)
-//        {
-//            $this->db->where('stage_id',$stage);
-//
-//        }
-//
-//        $this->db->where('project_id',$project);
-//
-//
-//
-////        echo $project;
-//        $this->db->from('inspection_report');
-//        $this->db->join('stage', 'inspection_report.stage_id = stage.id');
-////        $this->db->join('stage_activity_mapping', 'stage.id = stage_activity_mapping.project_stage_map_id');
-//        $this->db->join('activity', 'inspection_report.activity_id = activity.id');
-//        $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id','left');
-//
-//
-//
-//
-//        $query = $this->db->get()->result_array();
-////        echo $this->db->last_query();
-////        die;
+
 
         $this->db->select("project.id as projectId,
                                 project.name as projectName,
@@ -817,39 +792,30 @@ public function createStageActEmp($stage,$emp){
         $this->db->join('activity', 'activity.id = inre.activity_id');
         if($stage)
         {
-//        $this->db->where('stage_id',$stage);
             $this->db->where('inre.stage_id', $stage);
 
 
         }
 
-        if(!empty($date))
-        {
-//        $this->db->where('stage_id',$stage);
-//            $this->db->like('datetime',timestampdiff($date) );
-//        $this->db->where('date(inre.datetime)', $date);
-//        $this->db->where("date(inre.datetime,'%d-%m-%Y') <= $date",NULL,FALSE);
-            $this->db->where('date(inre.datetime)',  $date);
-
-
-
+        if($this->session->userdata['user_data'][0]['role']!="admin") {
+            $this->db->where('inre.user_id',$this->session->userdata['user_data'][0]['id']);
 
         }
-        $this->db->where('inre.project_id', $project);
 
-        //->where('date(datetime)', $date)
-//               ->where('inre.user_id', $userId)
+        if(!empty($date))
+        {
+            $this->db->where('date(inre.datetime)',  $date);
+
+        }
+        if(!empty($project)) {
+            $this->db->where('inre.project_id', $project);
+        }
+
         $this->db ->order_by('datetime desc');
         $data= $this->db->get()->result_array();
-//        $data=$this->db->result_array();
-//        echo $this->db->last_query();
 
-//        echo $date;
-//        print_r($data);
-//        die;
 
         return $data;
-//        return $query;
 
     }
 public function getProjectsReportDate($project,$date){
@@ -945,14 +911,9 @@ public function getProjectEmployee($projectid){
     }
 
    public function getreportStageAll(){
+//      echo $this->session->userdata['user_data'][0]['role'];
        if($this->session->userdata['user_data'][0]['role']=="admin") {
 //
-//           $this->db->select('*');
-//           $this->db->from('inspection_report'); F Y h:i:s A
-//           $this->db->join('stage', 'inspection_report.stage_id = stage.id');
-//           $this->db->join('activity', 'inspection_report.activity_id = activity.id');
-//           $this->db->join('inspection_report_images', 'inspection_report.id = inspection_report_images.id', 'left');
-//           $query = $this->db->get()->result_array();
            $data = $this->db
                ->select("project.id as projectId,
                                 project.name as projectName,
