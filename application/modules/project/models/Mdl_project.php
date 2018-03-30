@@ -496,6 +496,29 @@ public function createStageActEmp($stage,$emp){
 						->get()
 						->result_array();
 	}
+    public function getProjectStageandDate($proID){
+        $stage= $this->db->select('project_stage_mapping.id,project_stage_mapping.stage_id,stage.name')
+            //->distinct()
+            ->from('project_stage_mapping')
+            ->join('stage','project_stage_mapping.stage_id = stage.id','left')
+            ->where('project_id',$proID)
+            ->get()
+            ->result_array();
+
+        $this->db->select('datetime');
+               $this->db->from("inspection_report");
+               $this->db->where('project_id',$proID);
+        if($this->session->userdata['user_data'][0]['role']!="admin") {
+            $this->db->where('user_id', $this->session->userdata['user_data'][0]['id']);
+        }
+        $this->db ->order_by('datetime ASC');
+
+        $date= $this->db->get()->result_array();
+
+//        return $date;
+        return array("stage"=>$stage,"date"=>$date);
+    }
+
 	public function getStageActivityList($stgID){
 		return $this->db->select('stage_activity_mapping.activity_id,activity.name')
 						//->distinct()

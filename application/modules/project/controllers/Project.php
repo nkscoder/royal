@@ -682,12 +682,29 @@ redirect(base_url('users/dashboard'));
   }
     public function stage_calls(){
         $projectid = $this->input->post('projectid');
-        $res_stg = $this->Mdl_project->getProjectStage($projectid);
+        $res_stg = $this->Mdl_project->getProjectStageandDate($projectid);
+////        echo '<pre>';
+//      print_r($res_stg);die;
         $stg_return='<option value="">Select Stage </option>';
-        foreach($res_stg as $stage_data){
+        foreach($res_stg['stage'] as $stage_data){
             $stg_return .= '<option   value="'.$stage_data['stage_id'].'">'.$stage_data['name'].'</option>';
         }
-        echo $stg_return;
+        $d1='';
+        $date_return='<option value="">Select Date </option>';
+//        print_r($res_stg['date']);die;
+        foreach($res_stg['date'] as $date_data){
+            $d=strtotime( $date_data['datetime']);
+            $datenew=date("d/m/Y", $d);
+            $datenew1=date("Y/m/d", $d);
+
+            if($d1!=$datenew) {
+                $d1 = $datenew;
+
+                $date_return .= '<option   value="' .$datenew1 . '">' . $datenew . '</option>';
+            }
+        }
+//       echo $date_return;
+        echo $stg_return .",".$date_return;
         /* echo '<pre>';
         print_r($res);
         echo '</pre>'; */
@@ -708,5 +725,10 @@ redirect(base_url('users/dashboard'));
 
     }
 
-  	
+  	public  function reportPrint(){
+
+//        $this->load->view('users/header/header');
+        $this->load->view('report_print');
+//        $this->load->view('users/header/footer');
+    }
 }
