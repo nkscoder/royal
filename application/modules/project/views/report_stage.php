@@ -15,7 +15,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Report Inspection
+             Inspection Report
             <small>Preview</small>
         </h1>
         <ol class="breadcrumb">
@@ -34,7 +34,7 @@
                 <!-- Horizontal Form -->
                 <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Report Inspection Print </h3>
+                        <h3 class="box-title"> Inspection Report Print </h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -131,7 +131,7 @@
 <!--                        <h3 class="box-title">Report Inspection </h3>-->
 <!--                    </div>-->
 <!--                    <div class="box-body">-->
-                        <h3 class="box-title">Report Inspection </h3>
+                        <h3 class="box-title"> Inspection Report </h3>
                         <div class="row">
                             <div class="col-sm-12">
 

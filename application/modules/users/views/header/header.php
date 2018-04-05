@@ -245,10 +245,13 @@
                     </span>
                     </a>
                     <ul class="treeview-menu">
+                        <?php if($this->session->userdata['user_data'][0]['role']=="admin"){  ?>
+
                         <li><a href="<?php echo base_url('project/generalProject'); ?>"><i
-                                        class="fa fa-circle-o"></i>General Project Table </a></li>
+                                        class="fa fa-circle-o"></i>General Report   </a></li>
+                        <?php }?>
                         <li><a href="<?php echo base_url('project/reportStage'); ?>"><i
-                                        class="fa fa-circle-o"></i>Report Inspection</a></li>
+                                        class="fa fa-circle-o"></i> Inspection Report</a></li>
 
                     </ul>
                 </li>

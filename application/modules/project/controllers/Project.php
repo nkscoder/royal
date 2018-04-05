@@ -498,7 +498,7 @@ redirect(base_url('users/dashboard'));
 
 
   public function generalProject(){
-      if (islogin()) {
+      if (isAdmin()) {
 
           $data['project']=$this->Mdl_project->getProjectAndDate();
           $data['employee']=$this->Mdl_project->getProjectEmployee();
@@ -535,7 +535,7 @@ redirect(base_url('users/dashboard'));
 
 
       }else{
-          redirect(base_url('users'));
+          redirect(base_url('users/dashboard'));
       }
 
   }

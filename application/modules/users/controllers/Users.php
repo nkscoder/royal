@@ -83,13 +83,18 @@ class Users extends MX_Controller
 
     public function dashboard()
     {
-        $result['client'] = $this->Mdl_users->getClient('client');
-        $result['contractor'] = $this->Mdl_users->getClient('contractor');
-        $result['employee'] = $this->Mdl_users->getClient('employee');
-        $result['project'] = $this->Mdl_users->getClient('project');
-        $this->load->view('header/header');
-        $this->load->view('dashboard', $result);
-        $this->load->view('header/footer');
+        if (islogin()) {
+            $result['client'] = $this->Mdl_users->getClient('client');
+            $result['contractor'] = $this->Mdl_users->getClient('contractor');
+            $result['employee'] = $this->Mdl_users->getClient('employee');
+            $result['project'] = $this->Mdl_users->getClient('project');
+            $this->load->view('header/header');
+            $this->load->view('dashboard', $result);
+            $this->load->view('header/footer');
+        }else{
+            redirect('users');
+
+        }
     }
 
     public function register()
