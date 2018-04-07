@@ -731,4 +731,60 @@ redirect(base_url('users/dashboard'));
         $this->load->view('report_print');
 //        $this->load->view('users/header/footer');
     }
+
+    public  function printInspectionReport(){
+        if (islogin()) {
+            if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+                $project = $this->input->post('project');
+                $stage = $this->input->post('stage');
+                $startdate = $this->input->post('startdate');
+                $enddate = $this->input->post('enddate');
+                $data['url']='project/printInspectionReport';
+                $data['report'] =$this->Mdl_project->getPrintReport($project,$stage,$startdate,$enddate);
+                $this->load->view('print',$data);
+
+
+
+            }
+            else {
+                $data['project'] = $this->Mdl_project->getProjects();
+                $this->load->view('users/header/header');
+                $this->load->view('print_inspection_report', $data);
+                $this->load->view('users/header/footer');
+            }
+        }
+        else{
+            redirect(base_url('users'));
+        }
+    }
+    public  function printGeneralReport(){
+        if (islogin()) {
+            if(isAdmin()) {
+                if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+
+                    $project = $this->input->post('project');
+                    $stage = $this->input->post('stage');
+                    $startdate = $this->input->post('startdate');
+                    $enddate = $this->input->post('enddate');
+
+
+
+                }
+                 else{
+                     $data['project'] = $this->Mdl_project->getProjects();
+                     $this->load->view('users/header/header');
+                     $this->load->view('print_general_report', $data);
+                     $this->load->view('users/header/footer');
+                 }
+
+
+            }else{
+                setInformUser('error', 'Not Allowed to Access this Page.');
+                redirect(base_url('users/dashboard'));
+            }
+        }
+        else{
+            redirect(base_url('users'));
+        }
+    }
 }

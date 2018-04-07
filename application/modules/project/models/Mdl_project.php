@@ -972,8 +972,7 @@ public function getProjectEmployee($projectid){
 //           return $query;
        }
        else{
-           $data = $this->db
-               ->select("project.id as projectId,
+            $this->db->select("project.id as projectId,
                                 project.name as projectName,
                                 stage.id as stageId,
                                 stage.name as stageName,
@@ -987,18 +986,24 @@ public function getProjectEmployee($projectid){
                                 document_number as docNum,
                                 approved,
                                 "
-               )
-               ->from("inspection_report as inre")
-               ->join('inspection_report_images as iri', 'iri.inspection_report_id = inre.id', 'left')
-               ->join('project', 'project.id = inre.project_id')
-               ->join('stage', 'stage.id = inre.stage_id')
-               ->join('activity', 'activity.id = inre.activity_id')
-               ->where('inre.user_id', $this->session->userdata['user_data'][0]['id'])
+               );
+               $this->db->from("inspection_report as inre");
+               $this->db->join('inspection_report_images as iri', 'iri.inspection_report_id = inre.id', 'left');
+              $this->db ->join('project', 'project.id = inre.project_id');
+               $this->db->join('stage', 'stage.id = inre.stage_id');
+               $this->db->join('activity', 'activity.id = inre.activity_id');
+          if( $this->session->userdata['user_data'][0]['role']=="employee") {
+              $this->db->where('inre.user_id', $this->session->userdata['user_data'][0]['id']);
+          }
+           if( $this->session->userdata['user_data'][0]['role']=="user") {
+               $this->db->where('inre.user_id', $this->session->userdata['user_data'][0]['id']);
+           }
+
                //->where('date(datetime)', $date)
 //               ->where('inre.user_id', $userId)
-               ->order_by('project.id, stage.id, activity.id, datetime desc')
-               ->get()
-               ->result_array();
+               $this->db->order_by('project.id, stage.id, activity.id, datetime desc');
+               $this->db->get();
+              $data =$this->db->result_array();
            //echo $this->db->last_query();
 //           echo "nitesh";
 //           echo "<pre>";
@@ -1007,6 +1012,63 @@ public function getProjectEmployee($projectid){
            return $data;
        }
 
+
+   }
+
+   public function getPrintReport($project,$stage,$startdate,$enddate){
+       $this->db->select("project.id as projectId,
+                                project.name as projectName,
+                                stage.id as stageId,
+                                stage.name as stageName,
+                                activity.id as activityId,
+                                activity.name as activityName
+                                ,
+                                date_format(datetime, '%D %M %Y %h:%i %p') as datetime,
+                                inre.id as reportId,
+                                remarks,
+                                replace(iri.image_url, '/home/bucontec/public_html', 'http://bucontechnology.in') as imageUrl,
+                                document_number as docNum,
+                                approved,
+                                "
+       );
+       $this->db->from("inspection_report as inre");
+       $this->db->join('inspection_report_images as iri', 'iri.inspection_report_id = inre.id', 'left');
+       $this->db ->join('project', 'project.id = inre.project_id');
+       $this->db->join('stage', 'stage.id = inre.stage_id');
+       $this->db->join('activity', 'activity.id = inre.activity_id');
+
+       if(!empty($project))  {
+           $this->db->where('inre.project_id', $project);
+       }
+
+       if(!empty($stage))  {
+           $this->db->where('inre.stage_id', $stage);
+       }
+
+       if(!empty($startdate) and !empty($enddate)){
+           $this->db->where('inre.datetime BETWEEN "'. $startdate. '" and "'.$enddate.'"');
+
+       }
+
+
+       if( $this->session->userdata['user_data'][0]['role']=="employee") {
+           $this->db->where('inre.user_id', $this->session->userdata['user_data'][0]['id']);
+       }
+       if( $this->session->userdata['user_data'][0]['role']=="user") {
+           $this->db->where('inre.user_id', $this->session->userdata['user_data'][0]['id']);
+       }
+
+       //->where('date(datetime)', $date)
+//               ->where('inre.user_id', $userId)
+       $this->db->order_by('project.id, stage.id, activity.id, datetime desc');
+       $data =$this->db->get()->result_array();
+//       $this->db->
+       //echo $this->db->last_query();
+//           echo "nitesh";
+//           echo "<pre>";
+////
+//           print_r($this->session->userdata['user_data'][0]['id']); die;
+       return $data;
 
    }
 }

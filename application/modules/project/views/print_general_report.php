@@ -2,20 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: nitesh
- * Date: 16/3/18
- * Time: 9:33 PM
+ * Date: 7/4/18
+ * Time: 3:27 PM
  */
-
 ?>
-
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-             Inspection Report
+            General Report
             <small>Preview</small>
         </h1>
         <ol class="breadcrumb">
@@ -33,30 +30,23 @@
             <div class="col-md-12">
                 <!-- Horizontal Form -->
                 <div class="box box-warning">
-
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> General Report Print </h3>
+                    </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-
-<!--                </div>-->
-<!--                </div>-->
-<!--               -->
-<!--                <div class="box box-warning">-->
-<!--                    <div class="box-header with-border">-->
-<!--                        <h3 class="box-title">Report Inspection </h3>-->
-<!--                    </div>-->
-<!--                    <div class="box-body">-->
-                        <h3 class="box-title"> Inspection Report </h3>
                         <div class="row">
                             <div class="col-sm-12">
 
                                 <!-- Project employee relation -->
-                                <form role="form" action="<?php echo base_url('project/reportStage'); ?>" method="post">
+                                <form role="form" action="<?php echo base_url('project/printGeneralReport/'); ?>" method="post">
                                     <table id="emprelation" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
                                         <thead>
                                         <tr>
                                             <th>Select Project</th>
                                             <th>Select Stage</th>
-                                            <th>Select Date</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
 
                                         </tr>
                                         </thead>
@@ -65,7 +55,7 @@
                                             <td>
                                                 <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
 
-                                                    <select name="project" id="projectname" required>
+                                                    <select name="project" id="projectnames" required>
                                                         <option value="">Select Project</option>
                                                         <?php foreach ($project as $row){?>
                                                             <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
@@ -78,7 +68,7 @@
 
                                             <td>
                                                 <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                                    <select name="stage" id="stage-options" >
+                                                    <select name="stage" id="stage-option" >
                                                         <option value="">Select Stage</option>
 
                                                     </select>
@@ -88,34 +78,24 @@
 
                                             <td>
 
-<!--                                                --><?php //$d1='';
-//                                                foreach ($date as $row){
-//                                                    $d=strtotime( $row['datetime']);
-//                                                    $datenew=date("d/m/Y", $d);
-//                                                    if($d1!=$datenew){
-//
-//
-//                                                        $d1=$datenew;
-//                                                        echo $d1;echo "<br>";
-////                                                        echo $datenew ;
-//                                                     }} die;?>
+
 
                                                 <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                                    <select name="date" id="date-option" >
+                                                    <select name="startdate" id="date-options" >
                                                         <option value="">Select Date</option>
-<!--                                                        --><?php //$d1='';
-//                                                            foreach ($date as $row){
-//                                                            $d=strtotime( $row['datetime']);
-//                                                                 $datenew=date("d/m/Y", $d);
-//                                                                $datenew1=date("Y/m/d", $d);
-//                                                              if($d1!=$datenew){
-//                                                                  $d1=$datenew;
-//
-//                                                            ?>
-<!--                                                            <option value="--><?php //echo $datenew1;?><!--">--><?php //echo $datenew ?><!--</option>-->
-<!--                                                        --><?php //}
-//
-//                                                                }?>
+
+                                                    </select>
+
+                                                </div>
+                                            </td>
+                                            <td>
+
+
+
+                                                <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
+                                                    <select name="enddate" id="date-option" >
+                                                        <option value="">Select Date</option>
+
                                                     </select>
 
                                                 </div>
@@ -132,75 +112,8 @@
 
                         </div>
 
-                        <table id="example_project_emp" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>S.No</th>
-                                <th>Project</th>
-
-                                <th>Activity</th>
-                                <th>Status</th>
-                                <th>Remarks</th>
-                                <th>Photo</th>
-                                <th>Date</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>S.No</th>
-                                <th>Project</th>
-                                <th>Activity</th>
-                                <th>Status</th>
-                                <th>Remarks</th>
-                                <th>Photo</th>
-                                <th>Date</th>
 
 
-                            </tr>
-                            </tfoot>
-
-                            <tbody>
-                            <?php
-//
-                            $i=1;
-                            foreach ($report as $pro){
-
-
-                                ?>
-                                <tr>
-
-                                    <td>
-                                        <?php echo $i; $i=$i+1;?>
-                                    </td>
-                                    <td>
-                                        <?php echo $pro['projectName'];?>
-                                    </td>
-                                    <td>
-                                        <?php echo $pro['activityName'];?>
-                                    </td>
-
-                                    <td>
-                                        <?php if ($pro['approved']==1){?>
-                                            Accepted
-                                        <?php }else{?>
-                                            Rejected
-                                        <?php }?>
-                                    </td>
-                                    <td>
-                                        <?php echo $pro['remarks'];?>
-                                    </td>
-                                    <td>
-                                       <a target="_blank" href="<?php echo $pro['imageUrl'];  ?>"> <img src="<?php echo $pro['imageUrl'];?>" height="100" width="100"></a>
-                                    </td>
-                                    <td>
-                                        <?php echo $pro['datetime'];?>
-                                    </td>
-
-
-                                </tr>
-                            <?php }?>
-                            </tbody>
-                        </table>
 
 
                     </div>
@@ -263,6 +176,7 @@
                     var data = value.split(",");
                     $('#stage-option').html(data[0]);
                     $('#date-options').html(data[1]);
+                    $('#date-option').html(data[1]);
 
                     // alert(stgdata);
                     // $("#stage-options").html(stgdata);
@@ -301,5 +215,6 @@
         });
     }
 </script>
+
 
 

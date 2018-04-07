@@ -254,6 +254,25 @@
                                         class="fa fa-circle-o"></i> Inspection Report</a></li>
 
                     </ul>
+
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-book"></i>
+                        <span>Print Report</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <?php if($this->session->userdata['user_data'][0]['role']=="admin"){  ?>
+
+                            <li><a href="<?php echo base_url('project/printGeneralReport'); ?>"><i
+                                            class="fa fa-circle-o"></i>General Report Print </a></li>
+                        <?php }?>
+                        <li><a href="<?php echo base_url('project/printInspectionReport'); ?>"><i
+                                        class="fa fa-circle-o"></i> Inspection Report Print</a></li>
+
+                    </ul>
+
                 </li>
             </ul>
         </section>
