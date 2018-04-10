@@ -527,6 +527,7 @@ redirect(base_url('users/dashboard'));
 //              print_r($result['stage'] );
 //              die;
 //              print_r($data['project'])
+//              $data=
               $this->load->view('users/header/header');
               $this->load->view('generalProject',$data);
               $this->load->view('users/header/footer');
@@ -760,12 +761,19 @@ redirect(base_url('users/dashboard'));
     public  function printGeneralReport(){
         if (islogin()) {
             if(isAdmin()) {
+                $data['project']=$this->Mdl_project->getProjectAndDate();
+                $data['employee']=$this->Mdl_project->getProjectEmployee();
+                $data['date'] = $this->Mdl_project->getreportDate();
                 if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
                     $project = $this->input->post('project');
-                    $stage = $this->input->post('stage');
+                    $employee = $this->input->post('employee');
                     $startdate = $this->input->post('startdate');
                     $enddate = $this->input->post('enddate');
+                    $data['report'] =$this->Mdl_project->getPrintGeneralReport($project,$employee,$startdate,$enddate);
+                    $data['url']='project/printGeneralReport/';
+                    $this->load->view('general_print',$data);
+
 
 
 

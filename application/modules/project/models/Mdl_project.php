@@ -1071,6 +1071,43 @@ public function getProjectEmployee($projectid){
        return $data;
 
    }
+
+  public function getPrintGeneralReport($project,$employee,$startdate,$enddate){
+      $this->db->select('*');
+//      if ($project and $date and $employee) {
+//          $this->db->where('project_id', $project);
+//          $this->db->where('user_id', $employee);
+//          $this->db->like('datetime', $date);
+//      }
+
+      if ($project) {
+          $this->db->where('project_id', $project);
+
+      }
+      if ($employee) {
+          $this->db->where('user_id', $employee);
+
+      }
+
+      if(!empty($startdate) and !empty($enddate)){
+          $this->db->where('datetime BETWEEN "'. $startdate. '" and "'.$enddate.'"');
+
+      }
+//      $this->db->where('user_id', $employee);
+//      $this->db->like('datetime', $date)
+
+      $this->db->from('general_reports');
+
+      $this->db->join('project','general_reports.project_id = project.id');
+      $this->db->join('users','general_reports.user_id = users.id');
+
+
+
+
+      return $this->db->get()->result_array();
+
+
+  }
 }
 
 

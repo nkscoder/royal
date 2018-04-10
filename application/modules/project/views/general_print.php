@@ -2,19 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: nitesh
- * Date: 7/4/18
- * Time: 3:12 PM
+ * Date: 9/4/18
+ * Time: 3:55 PM
  */
+
 ?>
 
-<?php
-/**
- * Created by PhpStorm.
- * User: nitesh
- * Date: 30/3/18
- * Time: 4:43 PM
- */
-?>
 
 
 <html><head>
@@ -334,27 +327,26 @@
             </table>
         </td>
     </tr>
-    <tr><td>Project Name:-  <strong><?php echo $report[0]['projectName']; ?></strong></td></tr>
+    <tr><td>Project Name:-  <strong><?php echo $report[0]['name']; ?></strong></td></tr>
 
 
 
     <table style="margin-top:30px;">
 
         <tr class="heading">
-            <td>S.No</td>
-            <td>Stage</td>
-
-            <td>Activity</td>
-            <td>Status</td>
-            <td>Remarks</td>
-            <td>Photo</td>
-            <td>Date</td>
+            <th>S.No</th>
+            <th>Employee</th>
+            <th>Report Name</th>
+            <th>Description</th>
+            <th>Created</th>
         </tr>
 
         <tr class="item">
 
             <?php
             //
+//            echo "<pre>";
+//            print_r($report);
             $i=1;
             foreach ($report as $pro){
 
@@ -366,26 +358,18 @@
                 <?php echo $i; $i=$i+1;?>
             </td>
             <td>
-                <?php echo $pro['stageName'];?>
-            </td>
-            <td>
-                <?php echo $pro['activityName'];?>
+                <?php echo $pro['fname'].' '.$pro['sname'];?>
             </td>
 
             <td>
-                <?php if ($pro['approved']==1){?>
-                    Accepted
-                <?php }else{?>
-                    Rejected
-                <?php }?>
+                <?php echo $pro['report_name'];?>
             </td>
             <td>
-                <?php echo $pro['remarks'];?>
+                <?php echo $pro['description'];?>
             </td>
-            <td>
-                 <img src="<?php echo $pro['imageUrl'];?>" height="100" width="100">
-            </td>
-            <td>
+
+
+             <td>
                 <?php echo $pro['datetime'];?>
             </td>
 
@@ -416,3 +400,4 @@
 
 </body>
 </html>
+

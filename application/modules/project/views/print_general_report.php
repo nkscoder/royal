@@ -40,70 +40,39 @@
 
                                 <!-- Project employee relation -->
                                 <form role="form" action="<?php echo base_url('project/printGeneralReport/'); ?>" method="post">
-                                    <table id="emprelation" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th>Select Project</th>
-                                            <th>Select Stage</th>
-                                            <th>Start Date</th>
-                                            <th>End Date</th>
-
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-
-                                                    <select name="project" id="projectnames" required>
-                                                        <option value="">Select Project</option>
-                                                        <?php foreach ($project as $row){?>
-                                                            <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-                                                        <?php }?>
-                                                    </select>
-                                                    <input type="hidden" name="date" value="">
-
-                                                </div>
-                                            </td>
-
-                                            <td>
-                                                <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                                    <select name="stage" id="stage-option" >
-                                                        <option value="">Select Stage</option>
-
-                                                    </select>
-
-                                                </div>
-                                            </td>
-
-                                            <td>
 
 
+                                        <div class="row">
+                                        <div class="col-xs-3 col-md-3">Select Project</div>
+                                        <div class="col-xs-3 col-md-3">Select Employee</div>
+                                        <div class="col-xs-3 col-md-3">Start Date</div>
+                                        <div class="col-xs-3 col-md-3">End Date</div>
+                                        </div>
 
-                                                <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                                    <select name="startdate" id="date-options" >
-                                                        <option value="">Select Date</option>
+                                    <div class="row">
+                                        <div class="col-xs-3 col-md-3">
+                                            <select name="project" id="project" style="width: 100%;">
+                                                <option value="">Select Project</option>
+                                                <?php foreach ($project as $row){?>
+                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <select name="employee" id="employee_id" >
+                                                <option value="">Select Employee</option>
 
-                                                    </select>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <input type="date" name="startdate">
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <input type="date" name="enddate">
+                                        </div>
+                                    </div>
 
-                                                </div>
-                                            </td>
-                                            <td>
 
-
-
-                                                <div class="form-group col-xs-12 col-sm-8 col-md-12 col-lg-8">
-                                                    <select name="enddate" id="date-option" >
-                                                        <option value="">Select Date</option>
-
-                                                    </select>
-
-                                                </div>
-                                            </td>
-
-                                        </tr>
-                                        </tbody>
-                                    </table>
                                     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                                 </form>
                                 <!-- Project employee relation End -->
@@ -140,46 +109,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
-        $("#projectname").change(function(){
-            var projectid = $("#projectname").val();
+        $("#project").change(function(){
+            var projectid = $("#project").val();
             //alert(projectid);
             $.ajax({
-                url: "<?php echo base_url('/project/stage_calls');?>",
+                url: "<?php echo base_url('/project/get_employee');?>",
                 type:"POST",
                 dataType:"html",
                 data:{projectid : projectid},
-                success : function(value){
-                    console.log(value)
-                    var data = value.split(",");
-                    $('#stage-options').html(data[0]);
-                    $('#date-option').html(data[1]);
-
-                    // alert(stgdata);
-                    // $("#stage-options").html(stgdata);
-                }
-            });
-        });
-    });
-
-
-    $(document).ready(function(){
-        $("#projectnames").change(function(){
-            var projectid = $("#projectnames").val();
-            //alert(projectid);
-            $.ajax({
-                url: "<?php echo base_url('/project/stage_calls');?>",
-                type:"POST",
-                dataType:"html",
-                data:{projectid : projectid},
-                success : function(value){
-                    console.log(value)
-                    var data = value.split(",");
-                    $('#stage-option').html(data[0]);
-                    $('#date-options').html(data[1]);
-                    $('#date-option').html(data[1]);
-
-                    // alert(stgdata);
-                    // $("#stage-options").html(stgdata);
+                success : function(stgdata){
+                    //alert(stgdata);
+                    $("#employee_id").html(stgdata);
                 }
             });
         });
@@ -215,6 +155,5 @@
         });
     }
 </script>
-
 
 
