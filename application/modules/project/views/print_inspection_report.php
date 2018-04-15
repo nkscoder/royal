@@ -26,8 +26,8 @@
     <!-- Main content -->
     <section class="content">
 
-                <div class="box box-warning">
-                    <div class="box-header with-border">
+                <div class="box box-warning" style="padding: inherit;">
+                    <div class="box-header with-border" >
                         <h3 class="box-title"> Inspection Report Print </h3>
                     </div>
                     <!-- /.box-header -->
@@ -39,7 +39,7 @@
 <!--                                    <table id="emprelation" class="table table-striped table-bordered nowrap" width="100%" cellspacing="0">-->
 <!--                                        <thead>-->
 <!--                                        <tr>-->
-                                    <div class="row">
+                                    <div class="row" style="padding-bottom: 2% ; padding-left: 1%; padding-top: 2%;" >
                                         <div class="col-xs-3 col-md-3">Select Project</div>
                                         <div class="col-xs-3 col-md-3">Select Stage</div>
                                         <div class="col-xs-3 col-md-3">Start Date</div>
@@ -51,7 +51,7 @@
 
 
 
-                                    <div class="row">
+                                    <div class="row" style="padding-bottom: 2% ; padding-left: 1%;">
                                         <div class="col-xs-3 col-md-3">
                                             <select name="project" id="projectnames" required style="width: 100%;">
                                                 <option value="">Select Project</option>

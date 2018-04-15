@@ -29,7 +29,7 @@
             <!-- right column -->
             <div class="col-md-12">
                 <!-- Horizontal Form -->
-                <div class="box box-warning">
+                <div class="box box-warning" >
                     <div class="box-header with-border">
                         <h3 class="box-title"> General Report Print </h3>
                     </div>
@@ -37,19 +37,19 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-sm-12">
-
+                                <div class="box-body">
                                 <!-- Project employee relation -->
                                 <form role="form" action="<?php echo base_url('project/printGeneralReport/'); ?>" method="post">
 
 
-                                        <div class="row">
+                                        <div class="row" style="padding-bottom: 2%;  padding-left: 1%;">
                                         <div class="col-xs-3 col-md-3">Select Project</div>
                                         <div class="col-xs-3 col-md-3">Select Employee</div>
                                         <div class="col-xs-3 col-md-3">Start Date</div>
                                         <div class="col-xs-3 col-md-3">End Date</div>
                                         </div>
 
-                                    <div class="row">
+                                    <div class="row" style="padding-bottom: 2% ; padding-left: 1%; ">
                                         <div class="col-xs-3 col-md-3">
                                             <select name="project" id="project" style="width: 100%;">
                                                 <option value="">Select Project</option>
@@ -76,7 +76,7 @@
                                     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                                 </form>
                                 <!-- Project employee relation End -->
-
+                                </div>
                             </div>
 
                         </div>
